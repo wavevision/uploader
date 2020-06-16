@@ -1,0 +1,62 @@
+{
+  "name": "@wavevision/uploader",
+  "version": "0.0.1",
+  "description": "Simple back-end agnostic client-side uploader component.",
+  "main": "dist/index.js",
+  "author": "Wavevision s.r.o. <info@wavevision.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^12",
+    "@types/terser-webpack-plugin": "^3.0.0",
+    "@types/webpack": "^4.41.17",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@types/webpack-env": "^1.15.2",
+    "@typescript-eslint/eslint-plugin": "^2.0",
+    "@typescript-eslint/parser": "^2.0",
+    "@wavevision/coding-standard": "^4.0.1",
+    "babel-loader": "^8.1.0",
+    "cache-loader": "^4.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6",
+    "jest": "^26.0.1",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2",
+    "stylelint": "^13.6.0",
+    "stylelint-webpack-plugin": "^2.0.0",
+    "terser-webpack-plugin": "^3.0.5",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.8",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "peerDependencies": {
+    "react": "^16.10",
+    "react-dom": "^16.10"
+  },
+  "scripts": {
+    "eslint": "eslint *.js src --cache --ext .js --ext .ts --ext .tsx",
+    "eslint:clean": "rm -f .eslintcache",
+    "eslint:fix": "yarn eslint --fix",
+    "fix": "run-s ts eslint:fix prettier:fix stylelint:fix",
+    "prettier": "prettier '**/*.{css,js,scss,ts,tsx}' --check",
+    "prettier:fix": "yarn prettier --write",
+    "stylelint": "stylelint src/**/*.{css,scss}",
+    "stylelint:fix": "yarn stylelint --fix",
+    "ts": "tsc --project tsconfig.json"
+  }
+}
