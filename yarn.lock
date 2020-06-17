@@ -1464,10 +1464,25 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
+"@types/react-dom@^16.9.8":
+  version "16.9.8"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
+  integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "16.9.36"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.36.tgz#ade589ff51e2a903e34ee4669e05dbfa0c1ce849"
   integrity sha512-mGgUb/Rk/vGx4NCvquRuSH0GHBQKb1OqpGS9cT9lFxlTLHZgkksgI60TuIxubmn7JuCb+sENHhQciqa0npm0AQ==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.9.17", "@types/react@^16.9.37":
+  version "16.9.37"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.37.tgz#8fb93e7dbd5b1d3796f69aa979a7fe0439bc7bea"
+  integrity sha512-ZqnAXallQiZ08LTSqMfWMNvAfJEzRLOxdlbbbCIJlYGjU98BEU6bE2uBpKPGeWn+v3hIgCraHKtqUcKZBzMP/Q==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -1645,6 +1660,14 @@
     stylelint-config-sass-guidelines "^7.0.0"
     stylelint-selector-bem-pattern "^2.1.0"
     typescript "^3.7.2"
+
+"@wavevision/ts-utils@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@wavevision/ts-utils/-/ts-utils-0.4.3.tgz#17a677bda40be12298f70fc7fc13d704f0598863"
+  integrity sha512-2DsyfyGN2KJAG2I0OC7L07hHkeeNAJvwQuAczw6xShI6+x55xeUo4HhNvny+IWecbzpCYf3wlzaE26ql7DL5qA==
+  dependencies:
+    "@types/node" "^12"
+    "@types/react" "^16.9.17"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
