@@ -4,6 +4,12 @@
   "description": "Simple back-end agnostic client-side uploader component.",
   "main": "dist/index.js",
   "author": "Wavevision s.r.o. <info@wavevision.com>",
+  "contributors": [
+    {
+      "name": "Vít Rozsíval",
+      "email": "vit@wavevision.com"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "@wavevision/class-name": "^0.4.7",

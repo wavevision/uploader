@@ -11,7 +11,6 @@ import {
   transformFiles,
   updateUploadFile,
 } from './utils';
-import { UPLOADER_TYPE_BASIC } from './constants';
 import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
 
@@ -65,12 +64,6 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
       </Renderers.Provider>
     </Messages.Provider>
   );
-};
-
-Uploader.defaultProps = {
-  messages: {},
-  renderers: {},
-  type: UPLOADER_TYPE_BASIC,
 };
 
 export default Uploader;
