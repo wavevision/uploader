@@ -15,13 +15,13 @@ export const DEFAULT_MESSAGES: RequiredMessages = {
 
 const MessagesContext = createContext<RequiredMessages>(DEFAULT_MESSAGES);
 
-export const getMessage = <K extends keyof RequiredMessages>(
-  message: K,
-): RequiredMessages[K] => useContext(MessagesContext)[message];
-
 export const setMessages = (messages: Messages): RequiredMessages => ({
   ...DEFAULT_MESSAGES,
   ...messages,
 });
+
+export const useMessage = <K extends keyof RequiredMessages>(
+  message: K,
+): RequiredMessages[K] => useContext(MessagesContext)[message];
 
 export default MessagesContext;

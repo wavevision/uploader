@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 
 import { className } from '../../utils';
-import { getMessage } from '../../Messages';
-import { getRenderer } from '../index';
+import { useMessage } from '../../Messages';
+import { useRenderer } from '../index';
 import { DELETE } from '../constants';
 import { DELETE_FILE } from '../../Messages/constants';
 import { DeleteProps } from '../types';
@@ -23,17 +23,17 @@ const render = (props: DeleteProps): ReactElement => {
       onClick={handleClick}
       type="button"
     >
-      {getMessage(DELETE_FILE)}
+      {useMessage(DELETE_FILE)}
     </button>
   );
 };
 
 const Delete: FunctionComponent<DeleteProps> = props => {
-  const Delete = getRenderer(DELETE);
+  const Delete = useRenderer(DELETE);
   return (
     <div className={className.element('delete')}>
       {Delete ? (
-        <Delete {...props} message={getMessage(DELETE_FILE)} />
+        <Delete {...props} message={useMessage(DELETE_FILE)} />
       ) : (
         render(props)
       )}

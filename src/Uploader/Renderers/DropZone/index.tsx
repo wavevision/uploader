@@ -7,8 +7,8 @@ import React, {
 } from 'react';
 
 import { className } from '../../utils';
-import { getMessage } from '../../Messages';
-import { getRenderer } from '../index';
+import { useMessage } from '../../Messages';
+import { useRenderer } from '../index';
 import { DROP_ZONE } from '../constants';
 import {
   DROP_MULTIPLE_FILES,
@@ -17,7 +17,7 @@ import {
 import { DropZoneProps } from '../types';
 
 const render = (props: DropZoneProps): ReactNode =>
-  getMessage(
+  useMessage(
     props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
   );
 
@@ -39,7 +39,7 @@ const DropZone: FunctionComponent<DropZoneProps> = props => {
       props.filesInput.dispatchEvent(new Event('change', { bubbles: true }));
     }
   };
-  const DropZone = getRenderer(DROP_ZONE);
+  const DropZone = useRenderer(DROP_ZONE);
   return (
     <div
       className={className.element('drop-zone', dragged ? 'dragged' : null)}
@@ -53,8 +53,8 @@ const DropZone: FunctionComponent<DropZoneProps> = props => {
         <DropZone
           {...props}
           dragged={dragged}
-          multipleFilesMessage={getMessage(DROP_MULTIPLE_FILES)}
-          singleFileMessage={getMessage(DROP_SINGLE_FILE)}
+          multipleFilesMessage={useMessage(DROP_MULTIPLE_FILES)}
+          singleFileMessage={useMessage(DROP_SINGLE_FILE)}
         />
       ) : (
         render(props)

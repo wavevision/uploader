@@ -3,7 +3,7 @@ import isNil from '@wavevision/ts-utils/type/isNil';
 
 import Progress from '../Progress';
 import { className } from '../../utils';
-import { getRenderer } from '../index';
+import { useRenderer } from '../index';
 import { FILE } from '../constants';
 import { FileProps, FileRenderer } from '../types';
 
@@ -35,7 +35,7 @@ const render = (props: FileProps): ReactElement => (
 );
 
 const File: FileRenderer = props => {
-  const File = getRenderer(FILE);
+  const File = useRenderer(FILE);
   return (
     <div className={className.element('file')}>
       {File ? <File {...props} /> : render(props)}
