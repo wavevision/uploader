@@ -1,20 +1,21 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent } from 'react';
 
 import { JsonFile } from '../JsonManager/types';
+import { Message } from '../Messages/types';
 
 import { DELETE, DROP_ZONE, FILE, PROGRESS } from './constants';
 
 export type DeleteProps = { onClick: () => void };
 export type DeleteRenderer = FunctionComponent<
-  DeleteProps & { message: ReactNode }
+  DeleteProps & { message: Message }
 >;
 
 export type DropZoneProps = { filesInput: HTMLInputElement };
 export type DropZoneRenderer = FunctionComponent<
   DropZoneProps & {
     dragged: boolean;
-    singleFileMessage: ReactNode;
-    multipleFilesMessage: ReactNode;
+    singleFileMessage: Message;
+    multipleFilesMessage: Message;
   }
 >;
 

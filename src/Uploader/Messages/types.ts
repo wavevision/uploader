@@ -1,15 +1,15 @@
-import { ReactNode } from 'react';
-
 import {
   DELETE_FILE,
   DROP_MULTIPLE_FILES,
   DROP_SINGLE_FILE,
 } from './constants';
 
+export type Message = import('react').ReactNode;
+
 export interface Messages {
-  [DELETE_FILE]?: ReactNode;
-  [DROP_MULTIPLE_FILES]?: ReactNode;
-  [DROP_SINGLE_FILE]?: ReactNode;
+  [DELETE_FILE]?: Message;
+  [DROP_MULTIPLE_FILES]?: Message;
+  [DROP_SINGLE_FILE]?: Message;
 }
 
 export type RequiredMessages = Required<Messages>;
