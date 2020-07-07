@@ -7,12 +7,11 @@ import { DEFAULT_LINK_PARAMETER } from './constants';
 import { HandlerProps } from './types';
 
 const deleteFile = (props: HandlerProps): void => props.onDelete(props.file);
-const handleDeleteFile = (props: HandlerProps) => () => deleteFile(props);
 
 const Handler = (props: HandlerProps): ReactElement => {
   const { source, uploadedAt } = props.file;
   if (!source || uploadedAt) {
-    return props.children({ delete: handleDeleteFile(props) });
+    return props.children({ delete: () => deleteFile(props) });
   }
   const [progress, setProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
