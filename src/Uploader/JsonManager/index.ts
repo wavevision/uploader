@@ -1,12 +1,7 @@
 import { JsonData, JsonFile, JsonManager } from './types';
 
-type PredicateFunction = (file: JsonFile) => boolean;
-
-const findFilePredicate = (file: JsonFile): PredicateFunction => f =>
-  f.id === file.id;
-
 const findFile = (file: JsonFile, files: JsonFile[]): JsonFile | undefined =>
-  files.find(findFilePredicate(file));
+  files.find(f => f.id === file.id);
 
 const filterFiles = (file: JsonFile, files: JsonFile[]): JsonFile[] =>
   files.filter(f => f.id !== file.id);

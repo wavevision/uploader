@@ -26,7 +26,3 @@ export interface JsonManager {
   getUploadedFiles: () => JsonFiles;
   getValue: () => JsonFiles | null;
 }
-
-export interface UploaderFile extends JsonFile {
-  source?: File | null;
-}

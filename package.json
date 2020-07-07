@@ -6,6 +6,7 @@
   "author": "Wavevision s.r.o. <info@wavevision.com>",
   "license": "MIT",
   "dependencies": {
+    "@wavevision/class-name": "^0.4.7",
     "@wavevision/ts-utils": "^0.4.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -48,6 +49,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
+    "@wavevision/class-name": "^0.4",
     "@wavevision/ts-utils": "^0.4",
     "react": "^16.10",
     "react-dom": "^16.10"

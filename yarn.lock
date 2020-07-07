@@ -1622,6 +1622,11 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
+"@wavevision/class-name@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@wavevision/class-name/-/class-name-0.4.7.tgz#c96eba65c405a01bddb5d5e6e839acee843ddb9d"
+  integrity sha512-/rfW9MOHGyMH8GUMJKxwa1tqA8FdowBi51EVeeRVppOdlwsSil98+UWT6DlcJCIbI1Gs5L0ATg//DaaBVYNYZQ==
+
 "@wavevision/coding-standard@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@wavevision/coding-standard/-/coding-standard-4.0.1.tgz#cae7fb41f7a7b1886555acd07a745ccfbea34a74"
