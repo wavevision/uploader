@@ -15,7 +15,7 @@ export const DEFAULT_MESSAGES: RequiredMessages = {
 
 const MessagesContext = createContext<RequiredMessages>(DEFAULT_MESSAGES);
 
-export const setMessages = (messages: Messages): RequiredMessages => ({
+export const createMessages = (messages: Messages): RequiredMessages => ({
   ...DEFAULT_MESSAGES,
   ...messages,
 });

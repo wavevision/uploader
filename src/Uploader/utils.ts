@@ -43,9 +43,11 @@ export const toggleSubmitButtons = (
   props: UploaderProps,
   disabled: boolean,
 ): void => {
-  for (const button of getElementsBySelector<HTMLButtonElement>(
+  const buttons = getElementsBySelector<HTMLButtonElement>(
     '[type="submit"]',
-  )) {
+    props.form,
+  );
+  for (const button of buttons) {
     button.disabled = disabled;
   }
 };

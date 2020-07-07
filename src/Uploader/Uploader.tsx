@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 
-import JsonManager from './JsonManager';
-import Messages, { setMessages } from './Messages';
+import Messages, { createMessages } from './Messages';
 import Renderers from './Renderers';
 import UploaderItem from './UploaderItem';
 import { handleOnDelete, handleOnUpload, handleOnUploaded } from './handlers';
+import { useJsonManager } from './JsonManager';
 import {
   className,
   toggleSubmitButtons,
@@ -15,7 +15,7 @@ import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
 
 const Uploader: FunctionComponent<UploaderProps> = props => {
-  const { current: jsonManager } = useRef(JsonManager.create(props.jsonInput));
+  const jsonManager = useJsonManager(props.jsonInput);
   const [files, setFiles] = useState<UploaderState>(
     jsonManager.getValue() || [],
   );
@@ -47,7 +47,7 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
     return () => props.filesInput.removeEventListener('change', handleChange);
   }, []);
   return (
-    <Messages.Provider value={setMessages(props.messages)}>
+    <Messages.Provider value={createMessages(props.messages)}>
       <Renderers.Provider value={props.renderers}>
         <div className={className.block(props.type)}>
           {files.map(file => (

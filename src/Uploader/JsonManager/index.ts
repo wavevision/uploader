@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { JsonData, JsonFile, JsonManager } from './types';
 
 const findFile = (file: JsonFile, files: JsonFile[]): JsonFile | undefined =>
@@ -43,6 +45,11 @@ const create = (jsonInput: HTMLInputElement): JsonManager => {
       return value.length > 0 ? value : null;
     },
   };
+};
+
+export const useJsonManager = (jsonInput: HTMLInputElement): JsonManager => {
+  const { current } = useRef(create(jsonInput));
+  return current;
 };
 
 export default { create };
