@@ -21,7 +21,7 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
   );
   const handleChange = (): void => {
     const files = handleOnUpload(props);
-    if (files && files.length) {
+    if (files.length) {
       setFiles(current =>
         current.concat(transformFiles(files, props.filesInput.multiple)),
       );

@@ -51,12 +51,12 @@ export const toggleSubmitButtons = (
 };
 
 export const transformFiles = (
-  fileList: FileList,
+  files: File[],
   multiple: boolean,
 ): UploaderState => {
-  const files: UploaderState = [];
-  for (const file of fileList) {
-    files.push({
+  const uploaderState: UploaderState = [];
+  for (const file of files) {
+    uploaderState.push({
       contentType: file.type,
       id: `file__${Date.now()}__${random(10)}`,
       originalName: file.name,
@@ -65,7 +65,7 @@ export const transformFiles = (
     });
     if (!multiple) break;
   }
-  return files;
+  return uploaderState;
 };
 
 export const updateUploadFile = (
@@ -74,7 +74,13 @@ export const updateUploadFile = (
 ): ((state: UploaderState) => UploaderState) => state =>
   state.map(f => {
     if (f.id === file.id) {
-      f = { ...f, ...data, urls: { ...(data.urls || f.urls) } };
+      f = {
+        ...f,
+        ...data,
+        urls: {
+          ...(data.urls || f.urls),
+        },
+      };
     }
     return f;
   });

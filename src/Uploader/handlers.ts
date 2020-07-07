@@ -8,9 +8,12 @@ export const handleOnDelete = (props: UploaderProps, file: JsonFile): void => {
   if (assert(props.onDelete)) props.onDelete(file);
 };
 
-export const handleOnUpload = (props: UploaderProps): FileList | null => {
-  if (assert(props.onUpload)) return props.onUpload(props.filesInput);
-  return props.filesInput.files;
+export const handleOnUpload = (props: UploaderProps): File[] => {
+  if (assert(props.onUpload)) {
+    const files = props.onUpload(props.filesInput);
+    return files instanceof FileList ? Array.from(files) : files;
+  }
+  return props.filesInput.files ? Array.from(props.filesInput.files) : [];
 };
 
 export const handleOnUploaded = (

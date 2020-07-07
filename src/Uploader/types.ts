@@ -31,7 +31,7 @@ export interface UploaderProps extends UploaderBaseProps {
   jsonInput: HTMLInputElement;
   messages: Messages;
   onDelete?: (file: JsonFile) => void;
-  onUpload?: (filesInput: HTMLInputElement) => FileList | null;
+  onUpload?: (filesInput: HTMLInputElement) => FileList | File[];
   onUploaded?: (
     filesInput: HTMLInputElement,
     file: UploaderFile,
