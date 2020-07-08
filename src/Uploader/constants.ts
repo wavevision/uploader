@@ -10,5 +10,5 @@ const createDataAttribute = (value: string): DataAttribute => {
 
 export const INPUTS = createDataAttribute('inputs');
 export const ROOT = createDataAttribute('root');
-export const UPLOADER_TYPE_BASIC = 'uploaderTypeBasic';
-export const UPLOADER_TYPE_IMAGES = 'uploaderTypeImages';
+export const UPLOADER_TYPE_BASIC = 'basic';
+export const UPLOADER_TYPE_IMAGES = 'images';

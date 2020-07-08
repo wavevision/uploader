@@ -1,5 +1,11 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 
+import DropZone from './Renderers/DropZone';
 import Messages, { createMessages } from './Messages';
 import Renderers from './Renderers';
 import UploaderItem from './UploaderItem';
@@ -13,6 +19,16 @@ import {
 } from './utils';
 import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
+
+const renderDropZone = (
+  files: UploaderState,
+  props: UploaderProps,
+): ReactNode => {
+  if (props.filesInput.multiple || files.length === 0) {
+    return <DropZone filesInput={props.filesInput} />;
+  }
+  return null;
+};
 
 const Uploader: FunctionComponent<UploaderProps> = props => {
   const jsonManager = useJsonManager(props.jsonInput);
@@ -60,6 +76,7 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
               onUploaded={handleUploaded}
             />
           ))}
+          {renderDropZone(files, props)}
         </div>
       </Renderers.Provider>
     </Messages.Provider>

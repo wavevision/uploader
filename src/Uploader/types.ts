@@ -38,6 +38,7 @@ export interface UploaderProps extends UploaderBaseProps {
     response: JsonFile,
   ) => void;
   renderers: Renderers;
+  type: UploaderType;
 }
 
 export type UploaderState = UploaderFile[];
