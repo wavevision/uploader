@@ -2,17 +2,15 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Uploader from './Uploader';
-import { getInput } from './utils';
-import { UPLOADER_TYPE_BASIC } from './constants';
+import { getElement, getInput } from './utils';
+import { INPUTS, ROOT, UPLOADER_TYPE_BASIC } from './constants';
 import { UploaderOptions } from './types';
 
 const init = (options: UploaderOptions): void => {
-  const filesInput = getInput(options, 'file');
-  const jsonInput = getInput(options, 'hidden');
+  const inputs = getElement(INPUTS, options);
+  const filesInput = getInput('file', inputs);
+  const jsonInput = getInput('hidden', inputs);
   const { form } = filesInput || jsonInput;
-  if (!form) {
-    throw new Error('Uploader cannot be used outside an HTMLFormElement.');
-  }
   render(
     <Uploader
       filesInput={filesInput}
@@ -23,7 +21,7 @@ const init = (options: UploaderOptions): void => {
       renderers={options.renderers || {}}
       type={options.type || UPLOADER_TYPE_BASIC}
     />,
-    options.root,
+    getElement(ROOT, options),
   );
 };
 

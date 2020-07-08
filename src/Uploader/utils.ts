@@ -29,13 +29,31 @@ export const createRequest = (
   return xhr;
 };
 
-export const getInput = (
+export const getElement = (
+  attribute: import('@wavevision/ts-utils').DataAttribute,
   { root }: UploaderOptions,
+): HTMLElement => {
+  let element = getElementBySelector(`[${attribute.asString()}]`, root);
+  if (!element) {
+    element = document.createElement('div');
+    attribute.assign(element);
+    root.appendChild(element);
+  }
+  return element;
+};
+
+export const getInput = (
   type: string,
+  container: HTMLElement,
 ): HTMLInputElement => {
   const selector = `input[type="${type}"]`;
-  const input = getElementBySelector<HTMLInputElement>(selector, root);
-  if (!input) throw new Error(`Uploader root must contain ${selector}.`);
+  let input = getElementBySelector<HTMLInputElement>(selector, container);
+  if (!input) {
+    input = document.createElement('input');
+    input.multiple = true;
+    input.type = type;
+    container.appendChild(input);
+  }
   return input;
 };
 
@@ -43,12 +61,14 @@ export const toggleSubmitButtons = (
   props: UploaderProps,
   disabled: boolean,
 ): void => {
-  const buttons = getElementsBySelector<HTMLButtonElement>(
-    '[type="submit"]',
-    props.form,
-  );
-  for (const button of buttons) {
-    button.disabled = disabled;
+  if (props.form) {
+    const buttons = getElementsBySelector<HTMLButtonElement>(
+      '[type="submit"]',
+      props.form,
+    );
+    for (const button of buttons) {
+      button.disabled = disabled;
+    }
   }
 };
 
@@ -70,7 +90,7 @@ export const transformFiles = (
   return uploaderState;
 };
 
-export const updateUploadFile = (
+export const updateUploaderFile = (
   file: UploaderFile,
   data: Partial<UploaderFile>,
 ): ((state: UploaderState) => UploaderState) => state =>
@@ -80,7 +100,7 @@ export const updateUploadFile = (
         ...f,
         ...data,
         urls: {
-          ...(data.urls || f.urls),
+          ...(data.urls || f.urls || {}),
         },
       };
     }

@@ -16,7 +16,7 @@ import {
 } from '../../Messages/constants';
 import { DropZoneProps } from '../types';
 
-const render = (props: DropZoneProps): ReactNode =>
+const renderDefault = (props: DropZoneProps): ReactNode =>
   useMessage(
     props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
   );
@@ -57,7 +57,7 @@ const DropZone: FunctionComponent<DropZoneProps> = props => {
           singleFileMessage={useMessage(DROP_SINGLE_FILE)}
         />
       ) : (
-        render(props)
+        renderDefault(props)
       )}
     </div>
   );

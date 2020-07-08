@@ -12,7 +12,7 @@ import { DELETE } from '../constants';
 import { DELETE_FILE } from '../../Messages/constants';
 import { DeleteProps } from '../types';
 
-const render = (props: DeleteProps): ReactElement => {
+const renderDefault = (props: DeleteProps): ReactElement => {
   const handleClick = (e: MouseEvent): void => {
     e.preventDefault();
     props.onClick();
@@ -35,7 +35,7 @@ const Delete: FunctionComponent<DeleteProps> = props => {
       {Delete ? (
         <Delete {...props} message={useMessage(DELETE_FILE)} />
       ) : (
-        render(props)
+        renderDefault(props)
       )}
     </div>
   );

@@ -7,12 +7,12 @@ import { useRenderer } from '../index';
 import { FILE } from '../constants';
 import { FileProps, FileRenderer } from '../types';
 
-const getDownloadLink = (props: FileProps): string | undefined => {
+const downloadLink = (props: FileProps): string | undefined => {
   if (props.urls) return props.urls.download;
 };
 
-const renderFilename = (props: FileProps): ReactNode => {
-  const link = getDownloadLink(props);
+const fileName = (props: FileProps): ReactNode => {
+  const link = downloadLink(props);
   if (!props.isUploading && link) {
     return (
       <a className={className.element('file-download')} download href={link}>
@@ -23,14 +23,12 @@ const renderFilename = (props: FileProps): ReactNode => {
   return props.name;
 };
 
-const render = (props: FileProps): ReactElement => (
+const renderDefault = (props: FileProps): ReactElement => (
   <>
     {props.isUploading && !isNil(props.uploadProgress) && (
       <Progress value={props.uploadProgress} />
     )}
-    <span className={className.element('file-name')}>
-      {renderFilename(props)}
-    </span>
+    <span className={className.element('file-name')}>{fileName(props)}</span>
   </>
 );
 
@@ -38,7 +36,7 @@ const File: FileRenderer = props => {
   const File = useRenderer(FILE);
   return (
     <div className={className.element('file')}>
-      {File ? <File {...props} /> : render(props)}
+      {File ? <File {...props} /> : renderDefault(props)}
     </div>
   );
 };

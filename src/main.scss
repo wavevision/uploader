@@ -1,0 +1,11 @@
+[data-wavevision-uploader='inputs'] {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+[data-wavevision-uploader='root'] {
+  display: block;
+  height: 100%;
+  width: 100%;
+}

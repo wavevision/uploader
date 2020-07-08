@@ -19,6 +19,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.4",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.0",
@@ -26,12 +28,14 @@
     "@types/react": "^16.9.37",
     "@types/react-dom": "^16.9.8",
     "@types/terser-webpack-plugin": "^3.0.0",
+    "@types/testing-library__jest-dom": "^5.9.1",
     "@types/webpack": "^4.41.17",
     "@types/webpack-dev-server": "^3.11.0",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^2.0",
     "@typescript-eslint/parser": "^2.0",
     "@wavevision/coding-standard": "^4.0.1",
+    "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",
     "cross-env": "^7.0.2",
@@ -39,7 +43,8 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
+    "jest-css-modules": "^2.1.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
@@ -47,7 +52,7 @@
     "stylelint": "^13.6.0",
     "stylelint-webpack-plugin": "^2.0.0",
     "terser-webpack-plugin": "^3.0.5",
-    "ts-jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.8",
     "webpack": "^4.43.0",
@@ -61,7 +66,7 @@
     "react-dom": "^16.10"
   },
   "scripts": {
-    "eslint": "eslint *.js src --cache --ext .js --ext .ts --ext .tsx",
+    "eslint": "eslint *.js *.ts src --cache --ext .js --ext .ts --ext .tsx",
     "eslint-clean": "rm -f .eslintcache",
     "eslint-fix": "yarn eslint --fix",
     "fix": "run-s ts eslint-fix prettier-fix stylelint-fix",
@@ -69,6 +74,11 @@
     "prettier-fix": "yarn prettier --write",
     "stylelint": "stylelint src/**/*.{css,scss}",
     "stylelint-fix": "yarn stylelint --fix",
+    "test": "yarn test:all -o",
+    "test-all": "cross-env NODE_ENV=test jest",
+    "test-all-clean": "run-s test-clean test-all",
+    "test-clean": "rm -rf temp/cache/jest",
+    "test-coverage": "yarn test-all --coverage || true",
     "ts": "tsc --project tsconfig.json"
   }
 }

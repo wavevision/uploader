@@ -9,7 +9,7 @@ import {
   className,
   toggleSubmitButtons,
   transformFiles,
-  updateUploadFile,
+  updateUploaderFile,
 } from './utils';
 import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
@@ -36,7 +36,7 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
   const handleUpload = (): void => toggleSubmitButtons(props, true);
   const handleUploaded = (file: UploaderFile, response: JsonFile): void => {
     setFiles(files =>
-      updateUploadFile(file, { ...response, source: null })(files),
+      updateUploaderFile(file, { ...response, source: null })(files),
     );
     jsonManager.addUploadedFile(response);
     toggleSubmitButtons(props, false);
