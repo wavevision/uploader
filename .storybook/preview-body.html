@@ -1,0 +1,10 @@
+<form id="form" onsubmit="alert(this.elements.namedItem('json').value); return false;">
+	<div id="wavevision-uploader">
+		<div data-wavevision-uploader="inputs">
+			<input type="file" name="files" multiple />
+			<input type="hidden" name="json" />
+		</div>
+		<div data-wavevision-uploader="root" id="root"></div>
+	</div>
+	<button type="submit">Submit form</button>
+</form>

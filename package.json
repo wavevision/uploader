@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@storybook/react": "^5.3.19",
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^10.4.4",
     "@types/enzyme": "^3.10.5",
@@ -73,6 +74,7 @@
     "fix": "run-s ts eslint-fix prettier-fix stylelint-fix test-all",
     "prettier": "prettier '**/*.{css,js,scss,ts,tsx}' --check",
     "prettier-fix": "yarn prettier --write",
+    "storybook": "start-storybook",
     "stylelint": "stylelint src/**/*.{css,scss}",
     "stylelint-fix": "yarn stylelint --fix",
     "test": "yarn test:all -o",
