@@ -7,6 +7,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testMatch: ['<rootDir>/src/**/tests/**/*.test.ts?(x)'],
   testPathIgnorePatterns: [
+    '<rootDir>/dist/',
     '<rootDir>/node_modules/',
     '<rootDir>/temp/',
     '<rootDir>/tests/',
@@ -21,6 +22,7 @@ module.exports = {
     'src/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
+    '!dist/**',
     '!src/assets/**/tests/**',
   ],
   preset: 'ts-jest',

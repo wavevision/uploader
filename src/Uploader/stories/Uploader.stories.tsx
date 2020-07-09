@@ -3,11 +3,11 @@ import getElementById from '@wavevision/ts-utils/dom/getElementById';
 import random from '@wavevision/ts-utils/strings/random';
 import xhrMock, { delay } from 'xhr-mock';
 
-import { UploaderComponent as Uploader } from '..';
-import { DEFAULT_LINK_PARAMETER } from '../Uploader/UploaderItem/constants';
-import { UPLOADER_TYPE_BASIC } from '../Uploader/constants';
-import { JsonFile } from '../Uploader/JsonManager/types';
-import { UploaderType } from '../Uploader/types';
+import Uploader from '../Uploader';
+import { DEFAULT_LINK_PARAMETER } from '../UploaderItem/constants';
+import { UPLOADER_TYPE_BASIC } from '../constants';
+import { JsonFile } from '../JsonManager/types';
+import { UploaderType } from '../types';
 
 const makeFile = (file: File): JsonFile => {
   const id = random(6);

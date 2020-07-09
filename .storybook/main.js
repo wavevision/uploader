@@ -2,8 +2,8 @@ module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   webpackFinal: async config => {
     config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      loader: require.resolve('babel-loader'),
+      test: /\.tsx?$/,
+      loader: 'babel-loader',
     });
     config.module.rules.push({
       test: /\.scss$/,

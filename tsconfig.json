@@ -1,4 +1,10 @@
 {
   "extends": "@wavevision/coding-standard/ts/tsconfig.json",
-  "include": ["./*.js", "./*.ts", "./.storybook/**/*", "./src/**/*"]
+  "include": [
+    "./*.js",
+    "./*.ts",
+    "./.storybook/**/*",
+    "./src/**/*",
+    "./webpack/**/*"
+  ]
 }

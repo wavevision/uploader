@@ -1,5 +1,8 @@
-import Uploader from './Uploader';
-import './main.scss';
+import WavevisionUploader from './Uploader';
 
-export { default as UploaderComponent } from './Uploader/Uploader';
-export default Uploader;
+export {
+  UPLOADER_TYPE_BASIC,
+  UPLOADER_TYPE_IMAGES,
+} from './Uploader/constants';
+
+export default WavevisionUploader;

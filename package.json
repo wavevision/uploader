@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Simple back-end agnostic client-side uploader component.",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist",
   "author": "Wavevision s.r.o. <info@wavevision.com>",
   "contributors": [
     {
@@ -12,6 +16,8 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.9.37",
+    "@types/react-dom": "^16.9.8",
     "@wavevision/class-name": "^0.4.7",
     "@wavevision/ts-utils": "^0.4.3",
     "react": "^16.13.1",
@@ -22,12 +28,10 @@
     "@storybook/react": "^5.3.19",
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^10.4.4",
-    "@types/enzyme": "^3.10.5",
-    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.0",
+    "@types/mini-css-extract-plugin": "^0.9.1",
     "@types/node": "^12",
-    "@types/react": "^16.9.37",
-    "@types/react-dom": "^16.9.8",
+    "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
     "@types/terser-webpack-plugin": "^3.0.0",
     "@types/testing-library__jest-dom": "^5.9.1",
     "@types/webpack": "^4.41.17",
@@ -41,18 +45,21 @@
     "cache-loader": "^4.1.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
+    "deepmerge": "^4.2.2",
+    "dts-bundle-generator": "^5.0.0",
     "eslint": "^6",
+    "eslint-loader": "^4.0.2",
     "jest": "^26.1.0",
     "jest-css-modules": "^2.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "stylelint": "^13.6.0",
-    "stylelint-webpack-plugin": "^2.0.0",
-    "terser-webpack-plugin": "^3.0.5",
+    "stylelint-webpack-plugin": "^2.1.0",
+    "terser-webpack-plugin": "^3.0.6",
     "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.8",
@@ -62,12 +69,15 @@
     "xhr-mock": "^2.5.1"
   },
   "peerDependencies": {
+    "@types/react": "^16.9",
+    "@types/react-dom": "^16.9",
     "@wavevision/class-name": "^0.4",
     "@wavevision/ts-utils": "^0.4",
     "react": "^16.10",
     "react-dom": "^16.10"
   },
   "scripts": {
+    "build": "run-s webpack-clean webpack ts-declaration ts-declaration-all",
     "eslint": "eslint *.js *.ts src --cache --ext .js --ext .ts --ext .tsx",
     "eslint-clean": "rm -f .eslintcache",
     "eslint-fix": "yarn eslint --fix",
@@ -82,6 +92,10 @@
     "test-all-clean": "run-s test-clean test-all",
     "test-clean": "rm -rf temp/cache/jest",
     "test-coverage": "yarn test-all --coverage || true",
-    "ts": "tsc --project tsconfig.json"
+    "ts": "tsc --project tsconfig.json",
+    "ts-declaration": "dts-bundle-generator --config dts.config.js",
+    "ts-declaration-all": "cp dist/index.d.ts dist/all.d.ts",
+    "webpack": "cross-env TS_NODE_PROJECT='webpack/tsconfig.json' TS_NODE_TRANSPILE_ONLY=true NODE_ENV=production webpack --config webpack/webpack.config.ts",
+    "webpack-clean": "rm -rf dist/*"
   }
 }

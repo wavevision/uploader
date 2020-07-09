@@ -25,4 +25,6 @@ const init = (options: UploaderOptions): void => {
   );
 };
 
-export default { init };
+const WavevisionUploader = { init };
+
+export default WavevisionUploader;

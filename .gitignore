@@ -4,5 +4,6 @@
 !/.idea/codeStyles
 !/.idea/codeStyles/codeStyleConfig.xml
 !/.idea/codeStyles/Project.xml
+/dist
 /node_modules
 /temp

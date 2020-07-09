@@ -19,6 +19,7 @@ import {
 } from './utils';
 import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
+import './styles/uploader.scss';
 
 const renderDropZone = (
   files: UploaderState,
