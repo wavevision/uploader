@@ -11,7 +11,6 @@ const config = {
       noCheck: true,
       filePath: './src/index.ts',
       libraries: {
-        allowedTypesLibraries: ['react'],
         importedLibraries: ['react'],
       },
       outFile: './dist/index.d.ts',

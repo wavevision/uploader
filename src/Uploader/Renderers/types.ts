@@ -3,15 +3,13 @@ import { Message } from '../Messages/types';
 
 import { DELETE, DROP_ZONE, FILE, PROGRESS } from './constants';
 
-type FunctionComponent<T> = import('react').FunctionComponent<T>;
+type Renderer<T> = import('react').FunctionComponent<T>;
 
 export type DeleteProps = { onClick: () => void };
-export type DeleteRenderer = FunctionComponent<
-  DeleteProps & { message: Message }
->;
+export type DeleteRenderer = Renderer<DeleteProps & { message: Message }>;
 
 export type DropZoneProps = { filesInput: HTMLInputElement };
-export type DropZoneRenderer = FunctionComponent<
+export type DropZoneRenderer = Renderer<
   DropZoneProps & {
     dragged: boolean;
     singleFileMessage: Message;
@@ -26,10 +24,10 @@ export type FileProps = {
   uploadProgress?: number;
   urls: JsonFile['urls'];
 };
-export type FileRenderer = FunctionComponent<FileProps>;
+export type FileRenderer = Renderer<FileProps>;
 
 export type ProgressProps = { value: number };
-export type ProgressRenderer = FunctionComponent<ProgressProps>;
+export type ProgressRenderer = Renderer<ProgressProps>;
 
 export interface Renderers {
   [DELETE]?: DeleteRenderer;
