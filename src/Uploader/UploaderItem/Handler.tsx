@@ -35,11 +35,11 @@ const Handler = (props: HandlerProps): ReactElement => {
         xhr.upload.addEventListener('progress', handleProgress);
       });
       setXhr(xhr);
-      setUploading(true);
       props.onUpload();
       xhr.send(
         createData(source, props.link.parameter || DEFAULT_LINK_PARAMETER),
       );
+      setUploading(true);
     }
   };
   useEffect(onMount, []);

@@ -1,5 +1,13 @@
 import { DEFAULT_DATA } from './constants';
-import { JsonData } from './types';
+import { JsonData, JsonFile } from './types';
+
+export const findFile = (
+  file: JsonFile,
+  files: JsonFile[],
+): JsonFile | undefined => files.find(f => f.id === file.id);
+
+export const filterFiles = (file: JsonFile, files: JsonFile[]): JsonFile[] =>
+  files.filter(f => f.id !== file.id);
 
 export const parseJsonInput = (jsonInput: HTMLInputElement): JsonData =>
   JSON.parse(jsonInput.value);

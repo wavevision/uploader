@@ -38,4 +38,11 @@ export interface UploaderProps extends UploaderBaseProps {
   ) => void;
 }
 
+export type UploaderDefaultProps = Pick<
+  Required<UploaderProps>,
+  'messages' | 'renderers' | 'type'
+>;
+
 export type UploaderState = UploaderFile[];
+
+export type UploaderFunctionComponent<P> = import('react').FunctionComponent<P>;

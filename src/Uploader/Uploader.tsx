@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  useEffect,
-  useState,
-  FunctionComponent,
-  ReactNode,
-} from 'react';
+import React, { memo, useEffect, useState, ReactNode } from 'react';
 
 import DropZone from './Renderers/DropZone';
 import Messages, { createMessages } from './Messages';
@@ -19,18 +13,15 @@ import {
   updateUploaderFile,
 } from './utils';
 import { JsonFile } from './JsonManager/types';
-import { UploaderFile, UploaderProps, UploaderState } from './types';
+import {
+  UploaderFunctionComponent,
+  UploaderDefaultProps,
+  UploaderFile,
+  UploaderProps,
+  UploaderState,
+} from './types';
 import './styles/uploader.scss';
 import { UPLOADER_TYPE_BASIC } from './constants';
-
-const defaultProps: Pick<
-  Required<UploaderProps>,
-  'messages' | 'renderers' | 'type'
-> = {
-  messages: {},
-  renderers: {},
-  type: UPLOADER_TYPE_BASIC,
-};
 
 const renderDropZone = (
   files: UploaderState,
@@ -42,8 +33,8 @@ const renderDropZone = (
   return null;
 };
 
-const Uploader: FunctionComponent<
-  UploaderProps & Readonly<typeof defaultProps>
+const UploaderComponent: UploaderFunctionComponent<
+  UploaderProps & Readonly<UploaderDefaultProps>
 > = props => {
   const jsonManager = useJsonManager(props.jsonInput);
   const [files, setFiles] = useState<UploaderState>(
@@ -91,6 +82,7 @@ const Uploader: FunctionComponent<
               onDelete={handleDelete}
               onUpload={handleUpload}
               onUploaded={handleUploaded}
+              uploaderType={props.type}
             />
           ))}
           {renderDropZone(files, props)}
@@ -100,8 +92,14 @@ const Uploader: FunctionComponent<
   );
 };
 
-Uploader.defaultProps = defaultProps;
+UploaderComponent.defaultProps = {
+  messages: {},
+  renderers: {},
+  type: UPLOADER_TYPE_BASIC,
+};
 
-export default memo<UploaderProps>(
-  Uploader as FunctionComponent<UploaderProps>,
+const Uploader = memo<UploaderProps>(
+  UploaderComponent as UploaderFunctionComponent<UploaderProps>,
 );
+
+export default Uploader;

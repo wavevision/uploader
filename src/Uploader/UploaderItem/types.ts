@@ -1,5 +1,5 @@
 import { JsonFile } from '../JsonManager/types';
-import { UploaderFile, UploaderProps } from '../types';
+import { UploaderFile, UploaderProps, UploaderType } from '../types';
 
 export interface UploaderItemProps {
   file: UploaderFile;
@@ -7,6 +7,7 @@ export interface UploaderItemProps {
   onDelete: (file: JsonFile) => void;
   onUpload: () => void;
   onUploaded: (file: UploaderFile, response: JsonFile) => void;
+  uploaderType: UploaderType;
 }
 
 export type HandlerRenderProp = {
