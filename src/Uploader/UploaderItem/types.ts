@@ -9,13 +9,3 @@ export interface UploaderItemProps {
   onUploaded: (file: UploaderFile, response: JsonFile) => void;
   uploaderType: UploaderType;
 }
-
-export type HandlerRenderProp = {
-  delete: () => void;
-  progress?: number;
-  uploading?: boolean;
-};
-
-export interface HandlerProps extends UploaderItemProps {
-  children: (handler: HandlerRenderProp) => import('react').ReactElement;
-}

@@ -4,7 +4,7 @@ import random from '@wavevision/ts-utils/strings/random';
 import xhrMock, { delay } from 'xhr-mock';
 
 import Uploader from '../Uploader';
-import { DEFAULT_LINK_PARAMETER } from '../UploaderItem/constants';
+import { DEFAULT_LINK_PARAMETER } from '../UploaderItem/Handler/constants';
 import { UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
 import { JsonFile } from '../JsonManager/types';
 import { UploaderType } from '../types';

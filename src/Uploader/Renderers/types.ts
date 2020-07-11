@@ -1,5 +1,6 @@
 import { JsonFile } from '../JsonManager/types';
 import { Message } from '../Messages/types';
+import { HandlerRenderProp } from '../UploaderItem/Handler/types';
 
 import { DELETE, DROP_ZONE, FILE, PROGRESS } from './constants';
 
@@ -18,11 +19,8 @@ export type DropZoneRenderer = Renderer<
 >;
 
 export type FileProps = {
-  id: JsonFile['id'];
-  isUploading?: boolean;
-  name: JsonFile['originalName'];
-  uploadProgress?: number;
-  urls: JsonFile['urls'];
+  file: JsonFile;
+  handler: HandlerRenderProp;
 };
 export type FileRenderer = Renderer<FileProps>;
 

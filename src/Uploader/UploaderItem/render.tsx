@@ -1,38 +1,27 @@
 import React, { ReactElement } from 'react';
 
-import Delete from '../Renderers/Delete';
 import File from '../Renderers/File';
+import Image from '../Renderers/Image';
 import { className } from '../utils';
 import { UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
+import { FileRenderer } from '../Renderers/types';
+import { UploaderType } from '../types';
 
-import { HandlerRenderProp, UploaderItemProps } from './types';
+import { HandlerRenderProp } from './Handler/types';
+import { UploaderItemProps } from './types';
+
+const TYPE_TO_RENDERER: Record<UploaderType, FileRenderer> = {
+  [UPLOADER_TYPE_BASIC]: File,
+  [UPLOADER_TYPE_IMAGES]: Image,
+};
 
 const renderType = (
   props: UploaderItemProps,
   handler: HandlerRenderProp,
 ): ReactElement => {
-  switch (props.uploaderType) {
-    case UPLOADER_TYPE_BASIC:
-      return (
-        <>
-          <File
-            id={props.file.id}
-            isUploading={handler.uploading}
-            name={props.file.originalName}
-            uploadProgress={handler.progress}
-            urls={props.file.urls}
-          />
-          <Delete onClick={handler.delete} />
-        </>
-      );
-    case UPLOADER_TYPE_IMAGES:
-      return (
-        <code>
-          Uploader type <strong>{UPLOADER_TYPE_IMAGES}</strong> not implemented
-        </code>
-      );
-  }
-  throw new Error(`Invalid uploader type ${props.uploaderType}.`);
+  const Renderer = TYPE_TO_RENDERER[props.uploaderType];
+  if (Renderer) return <Renderer file={props.file} handler={handler} />;
+  throw new Error(`Invalid uploader type '${props.uploaderType}'.`);
 };
 
 const render = (props: UploaderItemProps) => (

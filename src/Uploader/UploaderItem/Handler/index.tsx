@@ -1,14 +1,17 @@
 import { ReactElement, memo, useEffect, useState } from 'react';
 
-import { JsonFile } from '../JsonManager/types';
+import { JsonFile } from '../../JsonManager/types';
+import { UploaderItemProps } from '../types';
 
 import { createData, createRequest } from './utils';
 import { DEFAULT_LINK_PARAMETER } from './constants';
 import { HandlerProps } from './types';
 
-const deleteFile = (props: HandlerProps): void => props.onDelete(props.file);
+type Props = HandlerProps & UploaderItemProps;
 
-const Handler = (props: HandlerProps): ReactElement => {
+const deleteFile = (props: Props): void => props.onDelete(props.file);
+
+const Handler = (props: Props): ReactElement => {
   const { source, uploadedAt } = props.file;
   if (!source || uploadedAt) {
     return props.children({ delete: () => deleteFile(props) });
@@ -50,4 +53,4 @@ const Handler = (props: HandlerProps): ReactElement => {
   });
 };
 
-export default memo<HandlerProps>(Handler);
+export default memo<Props>(Handler);
