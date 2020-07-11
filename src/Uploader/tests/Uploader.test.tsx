@@ -10,7 +10,7 @@ import { DEFAULT_DATA } from '../JsonManager/constants';
 import { DELETE_FILE } from '../Messages/constants';
 import { DEFAULT_MESSAGES } from '../Messages';
 
-import { createForm, createRoot } from './utils';
+import { createForm, createRoot, getUploaderElement } from './utils';
 
 const file: JsonFile = {
   contentType: 'text/plain',
@@ -31,8 +31,6 @@ describe('Uploader/Uploader', () => {
         filesInput={filesInput}
         form={form}
         jsonInput={jsonInput}
-        messages={{}}
-        renderers={{}}
         link={{ url: '/upload' }}
         type={UPLOADER_TYPE_BASIC}
       />,
@@ -46,7 +44,7 @@ describe('Uploader/Uploader', () => {
   describe('render', () => {
     it('renders uploader component', () => {
       const { baseElement } = renderUploader();
-      const uploader = baseElement.firstElementChild as HTMLDivElement;
+      const uploader = getUploaderElement(baseElement);
       expect(uploader.childElementCount).toBe(1);
       expect(uploader).toHaveClass(
         'wavevision-uploader',
@@ -61,16 +59,15 @@ describe('Uploader/Uploader', () => {
     afterEach(() => xhrMock.teardown());
     it('adds file to upload and handles upload', async () => {
       const { baseElement } = renderUploader();
-      const uploader = baseElement.firstElementChild as HTMLDivElement;
+      const uploader = getUploaderElement(baseElement);
       await act(async () => {
-        xhrMock.post('/upload', (request, response) =>
-          response.status(200).body(
-            JSON.stringify({
-              ...file,
-              urls: { download: '/download', preview: '/preview' },
-            }),
-          ),
-        );
+        xhrMock.post('/upload', {
+          status: 200,
+          body: JSON.stringify({
+            ...file,
+            urls: { download: '/download', preview: '/preview' },
+          }),
+        });
         Object.defineProperty(filesInput, 'files', {
           value: [new File(['content'], 'test.txt', { type: 'text/plain' })],
         });
@@ -86,7 +83,7 @@ describe('Uploader/Uploader', () => {
       jsonInput.value = JSON.stringify(data);
       const { baseElement, getByText } = renderUploader();
       const button = getByText(DEFAULT_MESSAGES[DELETE_FILE] as string);
-      const uploader = baseElement.firstElementChild as HTMLDivElement;
+      const uploader = getUploaderElement(baseElement);
       act(() => {
         Simulate.click(button);
       });

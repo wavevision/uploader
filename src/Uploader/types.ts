@@ -29,16 +29,13 @@ export interface UploaderProps extends UploaderBaseProps {
   filesInput: HTMLInputElement;
   form: HTMLFormElement | null;
   jsonInput: HTMLInputElement;
-  messages: Messages;
   onDelete?: (file: JsonFile) => void;
   onUpload?: (filesInput: HTMLInputElement) => FileList | File[] | undefined;
   onUploaded?: (
-    filesInput: HTMLInputElement,
     file: UploaderFile,
+    filesInput: HTMLInputElement,
     response: JsonFile,
   ) => void;
-  renderers: Renderers;
-  type: UploaderType;
 }
 
 export type UploaderState = UploaderFile[];

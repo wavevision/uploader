@@ -1,10 +1,4 @@
-import React, {
-  memo,
-  useState,
-  DragEvent,
-  FunctionComponent,
-  ReactNode,
-} from 'react';
+import React, { memo, useState, DragEvent, ReactNode } from 'react';
 
 import { className } from '../../utils';
 import { useMessage } from '../../Messages';
@@ -14,14 +8,14 @@ import {
   DROP_MULTIPLE_FILES,
   DROP_SINGLE_FILE,
 } from '../../Messages/constants';
-import { DropZoneProps } from '../types';
+import { DropZoneProps, Renderer } from '../types';
 
 const renderDefault = (props: DropZoneProps): ReactNode =>
   useMessage(
     props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
   );
 
-const DropZone: FunctionComponent<DropZoneProps> = props => {
+const DropZone: Renderer<DropZoneProps> = props => {
   const [dragged, setDragged] = useState(false);
   const handleClick = (): void => props.filesInput.click();
   const handleDragLeave = (): void => setDragged(false);
@@ -30,8 +24,7 @@ const DropZone: FunctionComponent<DropZoneProps> = props => {
     e.preventDefault();
   };
   const handleDrop = (e: DragEvent): void => {
-    e.preventDefault();
-    setDragged(true);
+    handleDragOver(e);
     if (e.dataTransfer) {
       handleDragLeave();
       const { files } = e.dataTransfer;

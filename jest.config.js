@@ -23,7 +23,9 @@ module.exports = {
     '!**/*.d.ts',
     '!**/node_modules/**',
     '!dist/**',
-    '!src/assets/**/tests/**',
+    '!src/**/stories/**',
+    '!src/**/tests/**',
+    '!src/index.ts',
   ],
   preset: 'ts-jest',
   globals: {

@@ -29,3 +29,6 @@ export const createForm = (): HTMLFormElement => {
   form.appendChild(createInputs());
   return form;
 };
+
+export const getUploaderElement = (baseElement: HTMLElement): HTMLDivElement =>
+  baseElement.firstElementChild as HTMLDivElement;

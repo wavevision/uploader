@@ -1,9 +1,12 @@
 import { DEFAULT_DATA } from './constants';
 import { JsonData } from './types';
 
+export const parseJsonInput = (jsonInput: HTMLInputElement): JsonData =>
+  JSON.parse(jsonInput.value);
+
 export const assertJsonInput = (jsonInput: HTMLInputElement): void => {
   if (jsonInput.value === '') jsonInput.value = JSON.stringify(DEFAULT_DATA);
-  const data: JsonData = JSON.parse(jsonInput.value);
+  const data = parseJsonInput(jsonInput);
   for (const property of Object.keys(DEFAULT_DATA)) {
     if (!(property in data)) {
       throw new Error(

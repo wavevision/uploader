@@ -1,8 +1,9 @@
 import React, {
-  FunctionComponent,
-  ReactNode,
+  memo,
   useEffect,
   useState,
+  FunctionComponent,
+  ReactNode,
 } from 'react';
 
 import DropZone from './Renderers/DropZone';
@@ -20,6 +21,16 @@ import {
 import { JsonFile } from './JsonManager/types';
 import { UploaderFile, UploaderProps, UploaderState } from './types';
 import './styles/uploader.scss';
+import { UPLOADER_TYPE_BASIC } from './constants';
+
+const defaultProps: Pick<
+  Required<UploaderProps>,
+  'messages' | 'renderers' | 'type'
+> = {
+  messages: {},
+  renderers: {},
+  type: UPLOADER_TYPE_BASIC,
+};
 
 const renderDropZone = (
   files: UploaderState,
@@ -31,7 +42,9 @@ const renderDropZone = (
   return null;
 };
 
-const Uploader: FunctionComponent<UploaderProps> = props => {
+const Uploader: FunctionComponent<
+  UploaderProps & Readonly<typeof defaultProps>
+> = props => {
   const jsonManager = useJsonManager(props.jsonInput);
   const [files, setFiles] = useState<UploaderState>(
     jsonManager.getValue() || [],
@@ -59,10 +72,13 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
     toggleSubmitButtons(props, false);
     handleOnUploaded(props, file, response);
   };
-  useEffect(() => {
+  const onUnmount = (): void =>
+    props.filesInput.removeEventListener('change', handleChange);
+  const onMount = (): typeof onUnmount => {
     props.filesInput.addEventListener('change', handleChange);
-    return () => props.filesInput.removeEventListener('change', handleChange);
-  }, []);
+    return onUnmount;
+  };
+  useEffect(onMount, []);
   return (
     <Messages.Provider value={createMessages(props.messages)}>
       <Renderers.Provider value={props.renderers}>
@@ -84,4 +100,8 @@ const Uploader: FunctionComponent<UploaderProps> = props => {
   );
 };
 
-export default Uploader;
+Uploader.defaultProps = defaultProps;
+
+export default memo<UploaderProps>(
+  Uploader as FunctionComponent<UploaderProps>,
+);

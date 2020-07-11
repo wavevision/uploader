@@ -30,15 +30,10 @@ const renderUploader = (
   const xhr = xhrMock.setup();
   xhr.post('/upload', async (request, response) => {
     const data: FormData = request.body();
-    const mock = await delay(
-      {
-        body: JSON.stringify(
-          makeFile(data.get(DEFAULT_LINK_PARAMETER) as File),
-        ),
-        status: 200,
-      },
-      1000,
-    );
+    const mock = await delay({
+      status: 200,
+      body: JSON.stringify(makeFile(data.get(DEFAULT_LINK_PARAMETER) as File)),
+    });
     return mock(request, response);
   });
   const form = getElementById('form') as HTMLFormElement;
@@ -49,8 +44,6 @@ const renderUploader = (
       filesInput={filesInput}
       form={form}
       jsonInput={jsonInput}
-      messages={{}}
-      renderers={{}}
       type={type}
       link={{ url: '/upload' }}
     />

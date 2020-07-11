@@ -1,8 +1,8 @@
 import { ReactElement, memo, useEffect, useState } from 'react';
 
-import { createData, createRequest } from '../utils';
 import { JsonFile } from '../JsonManager/types';
 
+import { createData, createRequest } from './utils';
 import { DEFAULT_LINK_PARAMETER } from './constants';
 import { HandlerProps } from './types';
 
@@ -28,7 +28,7 @@ const Handler = (props: HandlerProps): ReactElement => {
   const handleProgress = (e: ProgressEvent): void => {
     if (e.lengthComputable) setProgress((e.loaded / e.total) * 100);
   };
-  useEffect(() => {
+  const onMount = (): void => {
     if (!uploading) {
       const xhr = createRequest(props.link.url, xhr => {
         xhr.addEventListener('load', handleResponse);
@@ -41,7 +41,8 @@ const Handler = (props: HandlerProps): ReactElement => {
         createData(source, props.link.parameter || DEFAULT_LINK_PARAMETER),
       );
     }
-  }, []);
+  };
+  useEffect(onMount, []);
   return props.children({
     delete: handleDelete,
     progress,

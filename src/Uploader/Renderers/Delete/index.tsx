@@ -1,16 +1,11 @@
-import React, {
-  FunctionComponent,
-  memo,
-  MouseEvent,
-  ReactElement,
-} from 'react';
+import React, { memo, MouseEvent, ReactElement } from 'react';
 
 import { className } from '../../utils';
 import { useMessage } from '../../Messages';
 import { useRenderer } from '../index';
 import { DELETE } from '../constants';
 import { DELETE_FILE } from '../../Messages/constants';
-import { DeleteProps } from '../types';
+import { DeleteProps, Renderer } from '../types';
 
 const renderDefault = (props: DeleteProps): ReactElement => {
   const handleClick = (e: MouseEvent): void => {
@@ -28,7 +23,7 @@ const renderDefault = (props: DeleteProps): ReactElement => {
   );
 };
 
-const Delete: FunctionComponent<DeleteProps> = props => {
+const Delete: Renderer<DeleteProps> = props => {
   const Delete = useRenderer(DELETE);
   return (
     <div className={className.element('delete')}>

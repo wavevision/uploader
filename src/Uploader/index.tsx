@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import Uploader from './Uploader';
 import { getElement, getInput } from './utils';
-import { INPUTS, ROOT, UPLOADER_TYPE_BASIC } from './constants';
+import { INPUTS, ROOT } from './constants';
 import { UploaderOptions } from './types';
 
 const init = (options: UploaderOptions): void => {
@@ -17,9 +17,9 @@ const init = (options: UploaderOptions): void => {
       form={form}
       jsonInput={jsonInput}
       link={options.link}
-      messages={options.messages || {}}
-      renderers={options.renderers || {}}
-      type={options.type || UPLOADER_TYPE_BASIC}
+      messages={options.messages}
+      renderers={options.renderers}
+      type={options.type}
     />,
     getElement(ROOT, options),
   );
@@ -27,4 +27,5 @@ const init = (options: UploaderOptions): void => {
 
 const WavevisionUploader = { init };
 
+export { Uploader };
 export default WavevisionUploader;

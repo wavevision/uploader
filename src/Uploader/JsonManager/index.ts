@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
 import { JsonData, JsonFile, JsonManager } from './types';
-import { assertJsonInput } from './utils';
+import { assertJsonInput, parseJsonInput } from './utils';
 
 const findFile = (file: JsonFile, files: JsonFile[]): JsonFile | undefined =>
   files.find(f => f.id === file.id);
@@ -11,7 +11,7 @@ const filterFiles = (file: JsonFile, files: JsonFile[]): JsonFile[] =>
 
 const create = (jsonInput: HTMLInputElement): JsonManager => {
   assertJsonInput(jsonInput);
-  const getData: JsonManager['getData'] = () => JSON.parse(jsonInput.value);
+  const getData: JsonManager['getData'] = () => parseJsonInput(jsonInput);
   const getDefaultFiles: JsonManager['getDefaultFiles'] = () =>
     getData().defaultFiles;
   const getUploadedFiles: JsonManager['getUploadedFiles'] = () =>

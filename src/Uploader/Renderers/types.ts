@@ -3,7 +3,7 @@ import { Message } from '../Messages/types';
 
 import { DELETE, DROP_ZONE, FILE, PROGRESS } from './constants';
 
-type Renderer<T> = import('react').FunctionComponent<T>;
+export type Renderer<T> = import('react').FunctionComponent<T>;
 
 export type DeleteProps = { onClick: () => void };
 export type DeleteRenderer = Renderer<DeleteProps & { message: Message }>;

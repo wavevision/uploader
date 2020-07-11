@@ -22,6 +22,6 @@ export const handleOnUploaded = (
   response: JsonFile,
 ): void => {
   if (assert(props.onUploaded)) {
-    props.onUploaded(props.filesInput, file, response);
+    props.onUploaded(file, props.filesInput, response);
   }
 };
