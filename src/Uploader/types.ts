@@ -22,7 +22,7 @@ export interface UploaderFile extends JsonFile {
 }
 
 export interface UploaderOptions extends UploaderBaseProps {
-  root: HTMLElement;
+  root: Element | HTMLCollectionOf<Element> | NodeListOf<Element>;
 }
 
 export interface UploaderProps extends UploaderBaseProps {

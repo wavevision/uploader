@@ -3,20 +3,18 @@ import getElementBySelector from '@wavevision/ts-utils/dom/getElementBySelector'
 import getElementsBySelector from '@wavevision/ts-utils/dom/getElementsBySelector';
 import random from '@wavevision/ts-utils/strings/random';
 
-import {
-  UploaderFile,
-  UploaderOptions,
-  UploaderProps,
-  UploaderState,
-} from './types';
+import { UploaderFile, UploaderProps, UploaderState } from './types';
 
 export const className = cn('wavevision-uploader')();
 
 export const getElement = (
   attribute: import('@wavevision/ts-utils').DataAttribute,
-  { root }: UploaderOptions,
-): HTMLElement => {
-  let element = getElementBySelector(`[${attribute.asString()}]`, root);
+  root: Element,
+): Element => {
+  let element = getElementBySelector(
+    `[${attribute.asString()}]`,
+    root as HTMLElement,
+  );
   if (!element) {
     element = document.createElement('div');
     attribute.assign(element);
@@ -27,10 +25,13 @@ export const getElement = (
 
 export const getInput = (
   type: string,
-  container: HTMLElement,
+  container: Element,
 ): HTMLInputElement => {
   const selector = `input[type="${type}"]`;
-  let input = getElementBySelector<HTMLInputElement>(selector, container);
+  let input = getElementBySelector<HTMLInputElement>(
+    selector,
+    container as HTMLElement,
+  );
   if (!input) {
     input = document.createElement('input');
     input.multiple = true;
