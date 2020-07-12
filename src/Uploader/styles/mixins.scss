@@ -1,0 +1,13 @@
+@mixin link {
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin size($width, $height: $width) {
+  height: $height;
+  width: $width;
+}

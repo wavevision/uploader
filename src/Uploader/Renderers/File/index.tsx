@@ -7,6 +7,8 @@ import { className } from '../../utils';
 import { FILE } from '../constants';
 import { FileDefaultRenderer, FileProps } from '../types';
 
+import './file.scss';
+
 const downloadLink = (props: FileProps): string | undefined => {
   if (props.file.urls) return props.file.urls.download;
 };

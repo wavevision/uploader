@@ -9,6 +9,7 @@ import { IMAGE } from '../constants';
 import { FileDefaultRenderer, FileProps } from '../types';
 
 import NoImage from './NoImage';
+import './image.scss';
 
 const image = (props: FileProps): ReactElement => {
   if (props.handler.uploading) {

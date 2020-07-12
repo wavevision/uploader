@@ -1,0 +1,37 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.wavevision-uploader__drop-zone {
+  align-items: center;
+  border-radius: $spacer / 2;
+  border-style: dashed;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.25em;
+  justify-content: center;
+  padding: $spacer;
+  text-align: center;
+
+  &--dragged {
+    border-style: solid;
+  }
+}
+
+.wavevision-uploader--basic .wavevision-uploader__drop-zone {
+  height: 4 * $spacer;
+  transition: all 0.15s ease-in-out;
+
+  &--dragged {
+    height: 8 * $spacer;
+  }
+}
+
+.wavevision-uploader--images {
+  .wavevision-uploader__drop-zone {
+    @include size($image-preview-size);
+  }
+
+  &.wavevision-uploader--empty .wavevision-uploader__drop-zone {
+    width: 100%;
+  }
+}

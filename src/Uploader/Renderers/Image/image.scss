@@ -1,0 +1,49 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+$white: rgba(255, 255, 255, 1);
+$transparent: rgba(255, 255, 255, 0);
+
+.wavevision-uploader__image {
+  @include size($image-preview-size);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.wavevision-uploader__image-controls {
+  align-items: center;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, $white 55%, $transparent 100%);
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: $spacer ($spacer / 2);
+  position: absolute;
+  right: 0;
+
+  .wavevision-uploader__delete {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .wavevision-uploader__download {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+.wavevision-uploader__image-preview {
+  @include size($image-preview-size);
+
+  img {
+    display: block;
+    width: $image-preview-size;
+  }
+}
+
+.wavevision-uploader__no-image {
+  @include size(3 * $spacer);
+}

@@ -10,6 +10,8 @@ import {
 } from '../../Messages/constants';
 import { DropZoneDefaultRenderer, DropZoneProps } from '../types';
 
+import './dropZone.scss';
+
 const renderDefault = (props: DropZoneProps): ReactElement => (
   <>
     {useMessage(

@@ -7,6 +7,8 @@ import { DELETE } from '../constants';
 import { DELETE_FILE } from '../../Messages/constants';
 import { DeleteDefaultRenderer, DeleteProps } from '../types';
 
+import './delete.scss';
+
 const renderDefault = (props: DeleteProps): ReactElement => {
   const handleClick = (e: MouseEvent): void => {
     e.preventDefault();

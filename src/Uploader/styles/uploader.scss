@@ -1,3 +1,5 @@
+@import './variables';
+
 [data-wavevision-uploader='inputs'] {
   opacity: 0;
   position: absolute;
@@ -8,4 +10,38 @@
   display: block;
   height: 100%;
   width: 100%;
+}
+
+.wavevision-uploader {
+  display: flex;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  font-size: 14px;
+  margin: $spacer auto;
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.wavevision-uploader--basic {
+  flex-flow: column wrap;
+
+  .wavevision-uploader__item {
+    + .wavevision-uploader__drop-zone,
+    + .wavevision-uploader__item {
+      margin-top: $spacer;
+    }
+  }
+}
+
+.wavevision-uploader--images {
+  flex-flow: row wrap;
+
+  .wavevision-uploader__item {
+    + .wavevision-uploader__drop-zone,
+    + .wavevision-uploader__item {
+      margin-left: $spacer;
+    }
+  }
 }

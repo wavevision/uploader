@@ -1,0 +1,18 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.wavevision-uploader__file {
+  align-items: center;
+  display: flex;
+
+  &-download {
+    @include link;
+  }
+
+  &-name {
+    display: block;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

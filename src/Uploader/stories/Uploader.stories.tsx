@@ -19,7 +19,7 @@ const makeFile = (file: File): JsonFile => {
     uploadedAt: new Date().toISOString(),
     urls: {
       download: 'http://satyr.io/800x800',
-      preview: 'http://satyr.io/80x80',
+      preview: 'http://satyr.io/160x160',
     },
   };
 };
