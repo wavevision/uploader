@@ -98,7 +98,7 @@ UploaderComponent.defaultProps = {
   type: UPLOADER_TYPE_BASIC,
 };
 
-const Uploader = memo<UploaderProps>(
+const Uploader = memo(
   UploaderComponent as UploaderFunctionComponent<UploaderProps>,
 );
 

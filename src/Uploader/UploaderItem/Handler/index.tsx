@@ -53,4 +53,4 @@ const Handler = (props: Props): ReactElement => {
   });
 };
 
-export default memo<Props>(Handler);
+export default memo(Handler);

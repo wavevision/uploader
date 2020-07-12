@@ -1,17 +1,14 @@
 import React, { memo } from 'react';
 
+import Renderer from '../Renderer';
 import { className } from '../../utils';
-import { useRenderer } from '../index';
 import { PROGRESS } from '../constants';
-import { ProgressProps, ProgressRenderer } from '../types';
+import { ProgressDefaultRenderer } from '../types';
 
-const Progress: ProgressRenderer = props => {
-  const Progress = useRenderer(PROGRESS);
-  return (
-    <div className={className.element('progress')}>
-      {Progress ? <Progress {...props} /> : `${props.value} %`}
-    </div>
-  );
-};
+const Progress: ProgressDefaultRenderer = props => (
+  <div className={className.element('progress')}>
+    {Renderer.render(PROGRESS, <>{props.value} %</>, props)}
+  </div>
+);
 
-export default memo<ProgressProps>(Progress);
+export default memo(Progress);

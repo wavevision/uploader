@@ -3,10 +3,10 @@ import isNil from '@wavevision/ts-utils/type/isNil';
 
 import Delete from '../Delete';
 import Progress from '../Progress';
+import Renderer from '../Renderer';
 import { className } from '../../utils';
-import { useRenderer } from '../index';
 import { FILE } from '../constants';
-import { FileProps, FileRenderer } from '../types';
+import { FileDefaultRenderer, FileProps } from '../types';
 
 const downloadLink = (props: FileProps): string | undefined => {
   if (props.file.urls) return props.file.urls.download;
@@ -34,13 +34,10 @@ const renderDefault = (props: FileProps): ReactElement => (
   </>
 );
 
-const File: FileRenderer = props => {
-  const File = useRenderer(FILE);
-  return (
-    <div className={className.element('file')}>
-      {File ? <File {...props} /> : renderDefault(props)}
-    </div>
-  );
-};
+const File: FileDefaultRenderer = props => (
+  <div className={className.element('file')}>
+    {Renderer.render(FILE, renderDefault(props), props)}
+  </div>
+);
 
-export default memo<FileProps>(File);
+export default memo(File);

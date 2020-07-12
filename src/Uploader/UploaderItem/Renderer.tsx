@@ -4,13 +4,13 @@ import File from '../Renderers/File';
 import Image from '../Renderers/Image';
 import { className } from '../utils';
 import { UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
-import { FileRenderer } from '../Renderers/types';
+import { FileDefaultRenderer } from '../Renderers/types';
 import { UploaderType } from '../types';
 
 import { HandlerRenderProp } from './Handler/types';
 import { UploaderItemProps } from './types';
 
-const TYPE_TO_RENDERER: Record<UploaderType, FileRenderer> = {
+const TYPE_TO_RENDERER: Record<UploaderType, FileDefaultRenderer> = {
   [UPLOADER_TYPE_BASIC]: File,
   [UPLOADER_TYPE_IMAGES]: Image,
 };
@@ -30,4 +30,4 @@ const render = (props: UploaderItemProps) => (
   <div className={className.element('item')}>{renderType(props, handler)}</div>
 );
 
-export default render;
+export default { render };

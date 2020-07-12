@@ -20,8 +20,10 @@ export const createMessages = (messages: Messages): RequiredMessages => ({
   ...messages,
 });
 
+export const useMessages = (): RequiredMessages => useContext(MessagesContext);
+
 export const useMessage = <K extends keyof RequiredMessages>(
   message: K,
-): RequiredMessages[K] => useContext(MessagesContext)[message];
+): RequiredMessages[K] => useMessages()[message];
 
 export default MessagesContext;

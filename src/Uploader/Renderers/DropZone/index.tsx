@@ -1,21 +1,24 @@
-import React, { memo, useState, DragEvent, ReactNode } from 'react';
+import React, { DragEvent, memo, ReactElement, useState } from 'react';
 
+import Renderer from '../Renderer';
 import { className } from '../../utils';
 import { useMessage } from '../../Messages';
-import { useRenderer } from '../index';
 import { DROP_ZONE } from '../constants';
 import {
   DROP_MULTIPLE_FILES,
   DROP_SINGLE_FILE,
 } from '../../Messages/constants';
-import { DropZoneProps, Renderer } from '../types';
+import { DropZoneDefaultRenderer, DropZoneProps } from '../types';
 
-const renderDefault = (props: DropZoneProps): ReactNode =>
-  useMessage(
-    props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
-  );
+const renderDefault = (props: DropZoneProps): ReactElement => (
+  <>
+    {useMessage(
+      props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
+    )}
+  </>
+);
 
-const DropZone: Renderer<DropZoneProps> = props => {
+const DropZone: DropZoneDefaultRenderer = props => {
   const [dragged, setDragged] = useState(false);
   const handleClick = (): void => props.filesInput.click();
   const handleDragLeave = (): void => setDragged(false);
@@ -32,7 +35,6 @@ const DropZone: Renderer<DropZoneProps> = props => {
       props.filesInput.dispatchEvent(new Event('change', { bubbles: true }));
     }
   };
-  const DropZone = useRenderer(DROP_ZONE);
   return (
     <div
       className={className.element('drop-zone', dragged ? 'dragged' : null)}
@@ -42,18 +44,9 @@ const DropZone: Renderer<DropZoneProps> = props => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      {DropZone ? (
-        <DropZone
-          {...props}
-          dragged={dragged}
-          multipleFilesMessage={useMessage(DROP_MULTIPLE_FILES)}
-          singleFileMessage={useMessage(DROP_SINGLE_FILE)}
-        />
-      ) : (
-        renderDefault(props)
-      )}
+      {Renderer.render(DROP_ZONE, renderDefault(props), props)}
     </div>
   );
 };
 
-export default memo<DropZoneProps>(DropZone);
+export default memo(DropZone);

@@ -1,11 +1,11 @@
 import React, { memo, FunctionComponent } from 'react';
 
 import Handler from './Handler';
-import render from './render';
+import Renderer from './Renderer';
 import { UploaderItemProps } from './types';
 
 const UploaderItem: FunctionComponent<UploaderItemProps> = props => {
-  return <Handler {...props}>{render(props)}</Handler>;
+  return <Handler {...props}>{Renderer.render(props)}</Handler>;
 };
 
-export default memo<UploaderItemProps>(UploaderItem);
+export default memo(UploaderItem);

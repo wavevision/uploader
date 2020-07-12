@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 
-import { FileProps, FileRenderer } from '../types';
+import { FileDefaultRenderer } from '../types';
 import { UPLOADER_TYPE_IMAGES } from '../../constants';
 
-const Image: FileRenderer = () => (
+const Image: FileDefaultRenderer = () => (
   <code>
     Uploader type <strong>{UPLOADER_TYPE_IMAGES}</strong> not implemented
   </code>
 );
 
-export default memo<FileProps>(Image);
+export default memo(Image);
