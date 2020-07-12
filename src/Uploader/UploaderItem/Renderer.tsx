@@ -10,7 +10,9 @@ import { UploaderType } from '../types';
 import { HandlerRenderProp } from './Handler/types';
 import { UploaderItemProps } from './types';
 
-const TYPE_TO_RENDERER: Record<UploaderType, FileDefaultRenderer> = {
+type TypeRenderer = FileDefaultRenderer | undefined;
+
+const TYPE_TO_RENDERER: Record<UploaderType, TypeRenderer> = {
   [UPLOADER_TYPE_BASIC]: File,
   [UPLOADER_TYPE_IMAGES]: Image,
 };

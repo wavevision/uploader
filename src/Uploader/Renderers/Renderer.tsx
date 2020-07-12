@@ -6,14 +6,14 @@ import { RendererComponent, RendererProps, Renderers } from './types';
 
 import { useRenderer } from '.';
 
-type UsedRenderer<T> = RendererComponent<RendererProps<T>>;
+type UsedRenderer<T> = RendererComponent<RendererProps<T>> | undefined;
 
 const render = <T extends object>(
   key: keyof Renderers,
   element: ReactElement,
   props: T,
 ): ReactElement => {
-  const Renderer = useRenderer(key) as UsedRenderer<T> | undefined;
+  const Renderer = useRenderer(key) as UsedRenderer<T>;
   return Renderer ? <Renderer {...props} messages={useMessages()} /> : element;
 };
 
