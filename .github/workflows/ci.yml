@@ -16,4 +16,5 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
+      - run: yarn install
       - run: yarn ci
