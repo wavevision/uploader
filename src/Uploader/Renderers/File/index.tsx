@@ -1,5 +1,4 @@
 import React, { memo, ReactElement, ReactNode } from 'react';
-import isNil from '@wavevision/ts-utils/type/isNil';
 
 import Delete from '../Delete';
 import Progress from '../Progress';
@@ -26,8 +25,8 @@ const fileName = (props: FileProps): ReactNode => {
 
 const renderDefault = (props: FileProps): ReactElement => (
   <>
-    {props.handler.uploading && !isNil(props.handler.progress) && (
-      <Progress value={props.handler.progress} />
+    {props.handler.uploading && (
+      <Progress value={Number(props.handler.progress)} />
     )}
     <span className={className.element('file-name')}>{fileName(props)}</span>
     <Delete onClick={props.handler.delete} />

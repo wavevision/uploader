@@ -18,8 +18,8 @@ const makeFile = (file: File): JsonFile => {
     size: file.size,
     uploadedAt: new Date().toISOString(),
     urls: {
-      download: 'http://satyr.io/600x600',
-      preview: 'http://satyr.io/300x300',
+      download: 'http://satyr.io/800x800',
+      preview: 'http://satyr.io/80x80',
     },
   };
 };

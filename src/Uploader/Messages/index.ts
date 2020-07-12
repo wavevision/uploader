@@ -3,12 +3,14 @@ import { createContext, useContext } from 'react';
 import { Messages, RequiredMessages } from './types';
 import {
   DELETE_FILE,
+  DOWNLOAD_FILE,
   DROP_MULTIPLE_FILES,
   DROP_SINGLE_FILE,
 } from './constants';
 
 export const DEFAULT_MESSAGES: RequiredMessages = {
   [DELETE_FILE]: 'Delete file',
+  [DOWNLOAD_FILE]: 'Download file',
   [DROP_MULTIPLE_FILES]: 'Choose or drop files here.',
   [DROP_SINGLE_FILE]: 'Choose or drop file here',
 };

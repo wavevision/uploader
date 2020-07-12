@@ -73,7 +73,9 @@ const UploaderComponent: UploaderFunctionComponent<
   return (
     <Messages.Provider value={createMessages(props.messages)}>
       <Renderers.Provider value={props.renderers}>
-        <div className={className.block(props.type)}>
+        <div
+          className={className.block(props.type, files.length ? null : 'empty')}
+        >
           {files.map(file => (
             <UploaderItem
               key={file.id}
