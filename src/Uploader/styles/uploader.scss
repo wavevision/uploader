@@ -1,12 +1,12 @@
 @import './variables';
 
-[data-wavevision-uploader='inputs'] {
+[data-wavevision-uploader-element='inputs'] {
   opacity: 0;
   position: absolute;
   z-index: -1;
 }
 
-[data-wavevision-uploader='root'] {
+[data-wavevision-uploader-element='root'] {
   display: block;
   height: 100%;
   width: 100%;
