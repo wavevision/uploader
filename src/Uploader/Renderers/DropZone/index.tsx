@@ -12,15 +12,7 @@ import { DropZoneDefaultRenderer, DropZoneProps } from '../types';
 
 import './style.scss';
 
-const renderDefault = (props: DropZoneProps): ReactElement => (
-  <>
-    {useMessage(
-      props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
-    )}
-  </>
-);
-
-const DropZone: DropZoneDefaultRenderer = props => {
+const renderDefault = (props: DropZoneProps): ReactElement => {
   const [dragged, setDragged] = useState(false);
   const handleClick = (): void => props.filesInput.click();
   const handleDragLeave = (): void => setDragged(false);
@@ -46,9 +38,16 @@ const DropZone: DropZoneDefaultRenderer = props => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      {Renderer.render(DROP_ZONE, renderDefault, props)}
+      {useMessage(
+        props.filesInput.multiple ? DROP_MULTIPLE_FILES : DROP_SINGLE_FILE,
+      )}
     </div>
   );
 };
+
+const DropZone: DropZoneDefaultRenderer = Renderer.render(
+  DROP_ZONE,
+  renderDefault,
+);
 
 export default memo(DropZone);

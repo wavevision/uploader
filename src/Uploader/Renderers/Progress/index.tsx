@@ -8,13 +8,12 @@ import { ProgressDefaultRenderer, ProgressProps } from '../types';
 import './style.scss';
 
 const renderDefault = (props: ProgressProps): ReactElement => (
-  <>{props.value} %</>
+  <div className={className.element('progress')}>{props.value} % </div>
 );
 
-const Progress: ProgressDefaultRenderer = props => (
-  <div className={className.element('progress')}>
-    {Renderer.render(PROGRESS, renderDefault, props)}
-  </div>
+const Progress: ProgressDefaultRenderer = Renderer.render(
+  PROGRESS,
+  renderDefault,
 );
 
 export default memo(Progress);

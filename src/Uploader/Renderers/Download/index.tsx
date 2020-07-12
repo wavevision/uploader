@@ -10,15 +10,16 @@ import { DownloadDefaultRenderer, DownloadProps } from '../types';
 import './style.scss';
 
 const renderDefault = (props: DownloadProps): ReactElement => (
-  <a className={className.element('download-link')} download href={props.url}>
-    {useMessage(DOWNLOAD_FILE)}
-  </a>
+  <div className={className.element('download')}>
+    <a className={className.element('download-link')} download href={props.url}>
+      {useMessage(DOWNLOAD_FILE)}
+    </a>
+  </div>
 );
 
-const Download: DownloadDefaultRenderer = props => (
-  <div className={className.element('download')}>
-    {Renderer.render(DOWNLOAD, renderDefault, props)}
-  </div>
+const Download: DownloadDefaultRenderer = Renderer.render(
+  DOWNLOAD,
+  renderDefault,
 );
 
 export default memo(Download);

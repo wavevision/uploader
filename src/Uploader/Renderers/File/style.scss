@@ -9,18 +9,15 @@
     @include link;
   }
 
-  &-error {
-    color: $error-color;
-    display: block;
-    font-size: 0.8em;
-    margin: ($spacer / 2) 0;
-  }
-
   &-name {
     display: block;
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .wavevision-uploader__error {
+    margin: ($spacer / 2) 0;
   }
 
   .wavevision-uploader__progress {

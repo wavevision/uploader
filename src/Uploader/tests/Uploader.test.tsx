@@ -79,7 +79,7 @@ describe('Uploader/Uploader', () => {
           triggerChange();
         });
         expect(getByText('Error: Some error')).toHaveClass(
-          'wavevision-uploader__file-error',
+          'wavevision-uploader__error',
         );
       });
     });

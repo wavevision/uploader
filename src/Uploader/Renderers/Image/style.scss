@@ -14,11 +14,6 @@ $transparent: rgba(255, 255, 255, 0);
 
 .wavevision-uploader__image {
   position: relative;
-
-  &-error {
-    color: $error-color;
-    font-size: 0.8em;
-  }
 }
 
 .wavevision-uploader__image-controls {
@@ -47,8 +42,4 @@ $transparent: rgba(255, 255, 255, 0);
 .wavevision-uploader__image-preview img {
   display: block;
   width: $image-preview-size;
-}
-
-.wavevision-uploader__no-image {
-  @include size(5 * $spacer);
 }

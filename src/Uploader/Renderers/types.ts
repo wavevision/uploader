@@ -1,11 +1,12 @@
 import { JsonFile } from '../JsonManager/types';
-import { RequiredMessages } from '../Messages/types';
+import { Message, RequiredMessages } from '../Messages/types';
 import { HandlerRenderProp } from '../UploaderItem/Handler/types';
 
 import {
   DELETE,
   DOWNLOAD,
   DROP_ZONE,
+  ERROR,
   FILE,
   IMAGE,
   PROGRESS,
@@ -33,6 +34,11 @@ export type DropZoneRenderer = RendererComponent<
 >;
 export type DropZoneDefaultRenderer = RendererComponent<DropZoneProps>;
 
+export type ErrorProps = { message: Message };
+export type ErrorRendererProps = RendererProps<ErrorProps>;
+export type ErrorRenderer = RendererComponent<ErrorRendererProps>;
+export type ErrorDefaultRenderer = RendererComponent<ErrorProps>;
+
 export type FileProps = {
   error?: string;
   file: JsonFile;
@@ -51,6 +57,7 @@ export interface Renderers {
   [DELETE]?: DeleteRenderer;
   [DOWNLOAD]?: DownloadRenderer;
   [DROP_ZONE]?: DropZoneRenderer;
+  [ERROR]?: ErrorRenderer;
   [FILE]?: FileRenderer;
   [IMAGE]?: FileRenderer;
   [PROGRESS]?: ProgressRenderer;

@@ -1,6 +1,7 @@
 import React, { memo, ReactElement, ReactNode } from 'react';
 
 import Delete from '../Delete';
+import Error from '../Error';
 import Progress from '../Progress';
 import Renderer from '../Renderer';
 import { className } from '../../utils';
@@ -26,24 +27,18 @@ const fileName = (props: FileProps): ReactNode => {
 };
 
 const renderDefault = (props: FileProps): ReactElement => (
-  <>
+  <div className={className.element('file')}>
     {props.handler.uploading && (
       <Progress value={Number(props.handler.progress)} />
     )}
     <span className={className.element('file-name')}>
       {fileName(props)}
-      {props.error && (
-        <code className={className.element('file-error')}>{props.error}</code>
-      )}
+      {props.error && <Error message={props.error} />}
     </span>
     <Delete onClick={props.handler.delete} />
-  </>
-);
-
-const File: FileDefaultRenderer = props => (
-  <div className={className.element('file')}>
-    {Renderer.render(FILE, renderDefault, props)}
   </div>
 );
+
+const File: FileDefaultRenderer = Renderer.render(FILE, renderDefault);
 
 export default memo(File);

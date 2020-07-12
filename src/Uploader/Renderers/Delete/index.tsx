@@ -15,20 +15,18 @@ const renderDefault = (props: DeleteProps): ReactElement => {
     props.onClick();
   };
   return (
-    <button
-      className={className.element('delete-button')}
-      onClick={handleClick}
-      type="button"
-    >
-      {useMessage(DELETE_FILE)}
-    </button>
+    <div className={className.element('delete')}>
+      <button
+        className={className.element('delete-button')}
+        onClick={handleClick}
+        type="button"
+      >
+        {useMessage(DELETE_FILE)}
+      </button>
+    </div>
   );
 };
 
-const Delete: DeleteDefaultRenderer = props => (
-  <div className={className.element('delete')}>
-    {Renderer.render(DELETE, renderDefault, props)}
-  </div>
-);
+const Delete: DeleteDefaultRenderer = Renderer.render(DELETE, renderDefault);
 
 export default memo(Delete);

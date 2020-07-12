@@ -1,0 +1,7 @@
+@import '../../styles/variables';
+
+.wavevision-uploader__error {
+  color: $error-color;
+  display: block;
+  font-size: 0.8em;
+}
