@@ -48,9 +48,7 @@ const UploaderComponent: UploaderFunctionComponent<
   const handleChange = (): void => {
     const files = handleOnUpload(props);
     if (files.length) {
-      setFiles(current =>
-        current.concat(transformFiles(files, props.filesInput.multiple)),
-      );
+      setFiles(transformFiles(files, props.filesInput.multiple));
       props.filesInput.value = '';
     }
   };
@@ -65,9 +63,7 @@ const UploaderComponent: UploaderFunctionComponent<
   };
   const handleUpload = (): void => toggleSubmitButtons(props, true);
   const handleUploaded = (file: UploaderFile, response: JsonFile): void => {
-    setFiles(files =>
-      updateUploaderFile(file, { ...response, source: null })(files),
-    );
+    setFiles(updateUploaderFile(file, { ...response, source: null }));
     jsonManager.addUploadedFile(response);
     toggleSubmitButtons(props, false);
     handleOnUploaded(props, file, response);
