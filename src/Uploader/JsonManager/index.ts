@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { JsonData, JsonManager } from './types';
 import {
   assertJsonInput,
+  encodeJsonInput,
   filterFiles,
   findFile,
   parseJsonInput,
@@ -16,7 +17,7 @@ const create = (jsonInput: HTMLInputElement): JsonManager => {
   const getUploadedFiles: JsonManager['getUploadedFiles'] = () =>
     getData().uploadedFiles;
   const setData = (data: JsonData): JsonData => {
-    jsonInput.value = JSON.stringify(data);
+    encodeJsonInput(jsonInput, data);
     return getData();
   };
   return {
