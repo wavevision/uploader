@@ -34,6 +34,7 @@ export type DropZoneRenderer = RendererComponent<
 export type DropZoneDefaultRenderer = RendererComponent<DropZoneProps>;
 
 export type FileProps = {
+  error?: string;
   file: JsonFile;
   handler: HandlerRenderProp;
 };

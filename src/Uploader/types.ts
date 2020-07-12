@@ -18,6 +18,7 @@ interface UploaderBaseProps {
 }
 
 export interface UploaderFile extends JsonFile {
+  error?: string;
   source?: File | null;
 }
 
@@ -25,17 +26,37 @@ export interface UploaderOptions extends UploaderBaseProps {
   root: Element | HTMLCollectionOf<Element> | NodeListOf<Element>;
 }
 
+export type UploaderErrorEvent = {
+  file: JsonFile;
+  filesInput: HTMLInputElement;
+  error: {
+    status: number;
+    text: string;
+  };
+};
+
+export type UploaderDeleteEvent = {
+  file: JsonFile;
+};
+
+export type UploaderUploadEvent = {
+  filesInput: HTMLInputElement;
+};
+
+export type UploaderUploadedEvent = {
+  file: UploaderFile;
+  filesInput: HTMLInputElement;
+  response: JsonFile;
+};
+
 export interface UploaderProps extends UploaderBaseProps {
   filesInput: HTMLInputElement;
   form: HTMLFormElement | null;
   jsonInput: HTMLInputElement;
-  onDelete?: (file: JsonFile) => void;
-  onUpload?: (filesInput: HTMLInputElement) => FileList | File[] | undefined;
-  onUploaded?: (
-    file: UploaderFile,
-    filesInput: HTMLInputElement,
-    response: JsonFile,
-  ) => void;
+  onError?: (e: UploaderErrorEvent) => void;
+  onDelete?: (e: UploaderDeleteEvent) => void;
+  onUpload?: (e: UploaderUploadEvent) => FileList | File[] | undefined;
+  onUploaded?: (e: UploaderUploadedEvent) => void;
 }
 
 export type UploaderDefaultProps = Pick<

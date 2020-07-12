@@ -14,3 +14,6 @@ export const createRequest = (
   xhr.open('POST', url, true);
   return xhr;
 };
+
+export const eventRequest = (e: ProgressEvent): XMLHttpRequest =>
+  e.currentTarget as XMLHttpRequest;

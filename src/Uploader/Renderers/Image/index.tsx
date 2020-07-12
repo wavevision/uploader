@@ -9,11 +9,16 @@ import { IMAGE } from '../constants';
 import { FileDefaultRenderer, FileProps } from '../types';
 
 import NoImage from './NoImage';
-import './image.scss';
+import './style.scss';
 
 const image = (props: FileProps): ReactElement => {
   if (props.handler.uploading) {
     return <Progress value={Number(props.handler.progress)} />;
+  }
+  if (props.error) {
+    return (
+      <code className={className.element('image-error')}>{props.error}</code>
+    );
   }
   return (
     <div className={className.element('image-preview')}>

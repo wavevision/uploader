@@ -4,7 +4,12 @@ import DropZone from './Renderers/DropZone';
 import Messages, { createMessages } from './Messages';
 import Renderers from './Renderers';
 import UploaderItem from './UploaderItem';
-import { handleOnDelete, handleOnUpload, handleOnUploaded } from './handlers';
+import {
+  handleOnDelete,
+  handleOnError,
+  handleOnUpload,
+  handleOnUploaded,
+} from './handlers';
 import { useJsonManager } from './JsonManager';
 import {
   className,
@@ -20,8 +25,8 @@ import {
   UploaderProps,
   UploaderState,
 } from './types';
-import './styles/uploader.scss';
 import { UPLOADER_TYPE_BASIC } from './constants';
+import './styles';
 
 const renderDropZone = (
   files: UploaderState,
@@ -54,6 +59,10 @@ const UploaderComponent: UploaderFunctionComponent<
     if (file.uploadedAt) jsonManager.deleteFile(file);
     handleOnDelete(props, file);
   };
+  const handleError = (file: JsonFile, status: number, text: string): void => {
+    setFiles(updateUploaderFile(file, { error: text }));
+    handleOnError(props, file, status, text);
+  };
   const handleUpload = (): void => toggleSubmitButtons(props, true);
   const handleUploaded = (file: UploaderFile, response: JsonFile): void => {
     setFiles(files =>
@@ -82,6 +91,7 @@ const UploaderComponent: UploaderFunctionComponent<
               file={file}
               link={props.link}
               onDelete={handleDelete}
+              onError={handleError}
               onUpload={handleUpload}
               onUploaded={handleUploaded}
               uploaderType={props.type}

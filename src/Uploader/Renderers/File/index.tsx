@@ -7,7 +7,7 @@ import { className } from '../../utils';
 import { FILE } from '../constants';
 import { FileDefaultRenderer, FileProps } from '../types';
 
-import './file.scss';
+import './style.scss';
 
 const downloadLink = (props: FileProps): string | undefined => {
   if (props.file.urls) return props.file.urls.download;
@@ -30,7 +30,12 @@ const renderDefault = (props: FileProps): ReactElement => (
     {props.handler.uploading && (
       <Progress value={Number(props.handler.progress)} />
     )}
-    <span className={className.element('file-name')}>{fileName(props)}</span>
+    <span className={className.element('file-name')}>
+      {fileName(props)}
+      {props.error && (
+        <code className={className.element('file-error')}>{props.error}</code>
+      )}
+    </span>
     <Delete onClick={props.handler.delete} />
   </>
 );

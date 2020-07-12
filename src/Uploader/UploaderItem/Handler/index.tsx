@@ -3,7 +3,7 @@ import { ReactElement, memo, useEffect, useState } from 'react';
 import { JsonFile } from '../../JsonManager/types';
 import { UploaderItemProps } from '../types';
 
-import { createData, createRequest } from './utils';
+import { createData, createRequest, eventRequest } from './utils';
 import { DEFAULT_LINK_PARAMETER } from './constants';
 import { HandlerProps } from './types';
 
@@ -12,8 +12,8 @@ type Props = HandlerProps & UploaderItemProps;
 const deleteFile = (props: Props): void => props.onDelete(props.file);
 
 const Handler = (props: Props): ReactElement => {
-  const { source, uploadedAt } = props.file;
-  if (!source || uploadedAt) {
+  const { error, source, uploadedAt } = props.file;
+  if (error || !source || uploadedAt) {
     return props.children({ delete: () => deleteFile(props) });
   }
   const [progress, setProgress] = useState(0);
@@ -24,9 +24,18 @@ const Handler = (props: Props): ReactElement => {
     deleteFile(props);
   };
   const handleResponse = (e: ProgressEvent): void => {
-    const request = e.currentTarget as XMLHttpRequest;
-    const response = request.response as JsonFile;
-    props.onUploaded(props.file, response);
+    const request = eventRequest(e);
+    if (request.status === 200) {
+      const response = request.response as JsonFile;
+      return props.onUploaded(props.file, response);
+    }
+    if (request.status !== 0) {
+      return props.onError(
+        props.file,
+        request.status || 0,
+        request.statusText || 'Unexpected error',
+      );
+    }
   };
   const handleProgress = (e: ProgressEvent): void => {
     if (e.lengthComputable) setProgress((e.loaded / e.total) * 100);
@@ -34,7 +43,7 @@ const Handler = (props: Props): ReactElement => {
   const onMount = (): void => {
     if (!uploading) {
       const xhr = createRequest(props.link.url, xhr => {
-        xhr.addEventListener('load', handleResponse);
+        xhr.addEventListener('loadend', handleResponse);
         xhr.upload.addEventListener('progress', handleProgress);
       });
       setXhr(xhr);

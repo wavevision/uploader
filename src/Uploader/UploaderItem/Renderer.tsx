@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import File from '../Renderers/File';
 import Image from '../Renderers/Image';
 import { className } from '../utils';
-import { UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
+import { ITEM, UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
 import { FileDefaultRenderer } from '../Renderers/types';
 import { UploaderType } from '../types';
 
@@ -22,14 +22,20 @@ const renderType = (
   handler: HandlerRenderProp,
 ): ReactElement => {
   const Renderer = TYPE_TO_RENDERER[props.uploaderType];
-  if (Renderer) return <Renderer file={props.file} handler={handler} />;
+  if (Renderer) {
+    const { error, source, ...file } = props.file;
+    return <Renderer error={error} file={file} handler={handler} />;
+  }
   throw new Error(`Invalid uploader type '${props.uploaderType}'.`);
 };
 
 const render = (props: UploaderItemProps) => (
   handler: HandlerRenderProp,
 ): ReactElement => (
-  <div className={className.element('item')}>{renderType(props, handler)}</div>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <div className={className.element('item')} {...ITEM.asObject(props.file.id)}>
+    {renderType(props, handler)}
+  </div>
 );
 
 export default { render };

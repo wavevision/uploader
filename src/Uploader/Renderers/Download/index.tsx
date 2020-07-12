@@ -7,7 +7,7 @@ import { DOWNLOAD } from '../constants';
 import { DOWNLOAD_FILE } from '../../Messages/constants';
 import { DownloadDefaultRenderer, DownloadProps } from '../types';
 
-import './download.scss';
+import './style.scss';
 
 const renderDefault = (props: DownloadProps): ReactElement => (
   <a className={className.element('download-link')} download href={props.url}>

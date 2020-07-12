@@ -10,7 +10,7 @@ import {
 } from '../../Messages/constants';
 import { DropZoneDefaultRenderer, DropZoneProps } from '../types';
 
-import './dropZone.scss';
+import './style.scss';
 
 const renderDefault = (props: DropZoneProps): ReactElement => (
   <>

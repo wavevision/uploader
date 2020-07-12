@@ -2,13 +2,17 @@ import dataAttribute, {
   DataAttribute,
 } from '@wavevision/ts-utils/dom/dataAttribute';
 
-const createDataAttribute = (value: string): DataAttribute => {
-  const attribute = dataAttribute('wavevision-uploader');
-  attribute.value(value);
-  return attribute;
+const createDataAttribute = (name: string, value?: string): DataAttribute => {
+  const attr = dataAttribute(name, 'wavevision-uploader');
+  attr.value(value);
+  return attr;
 };
 
-export const INPUTS = createDataAttribute('inputs');
-export const ROOT = createDataAttribute('root');
+const createElementsDataAttribute = (value: string): DataAttribute =>
+  createDataAttribute('element', value);
+
+export const INPUTS = createElementsDataAttribute('inputs');
+export const ITEM = createDataAttribute('item');
+export const ROOT = createElementsDataAttribute('root');
 export const UPLOADER_TYPE_BASIC = 'basic';
 export const UPLOADER_TYPE_IMAGES = 'images';

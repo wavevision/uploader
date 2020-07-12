@@ -29,10 +29,15 @@ const renderUploader = (type: UploaderType): ReactNode => {
   const xhr = xhrMock.setup();
   xhr.post('/upload', async (request, response) => {
     const data: FormData = request.body();
-    const mock = await delay({
-      status: 200,
-      body: JSON.stringify(makeFile(data.get(DEFAULT_LINK_PARAMETER) as File)),
-    });
+    const file = makeFile(data.get(DEFAULT_LINK_PARAMETER) as File);
+    const mockResponse =
+      id % 3 === 0
+        ? { status: 500, reason: 'Error: File too large' }
+        : {
+            status: 200,
+            body: JSON.stringify(file),
+          };
+    const mock = await delay(mockResponse);
     return mock(request, response);
   });
   const form = getElementById('form') as HTMLFormElement;

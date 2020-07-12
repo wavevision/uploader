@@ -53,27 +53,52 @@ describe('Uploader/Uploader', () => {
     });
   });
   describe('upload', () => {
+    const triggerChange = (): void => {
+      Object.defineProperty(filesInput, 'files', {
+        value: [new File(['content'], 'test.txt', { type: 'text/plain' })],
+        writable: true,
+      });
+      fireEvent.change(filesInput);
+    };
     beforeEach(() => {
       xhrMock.setup();
     });
-    afterEach(() => xhrMock.teardown());
-    it('adds file to upload and handles upload', async () => {
-      const { baseElement } = renderUploader();
-      const uploader = getUploaderElement(baseElement);
-      await act(async () => {
-        xhrMock.post('/upload', {
-          status: 200,
-          body: JSON.stringify({
-            ...file,
-            urls: { download: '/download', preview: '/preview' },
-          }),
+    afterEach(() => {
+      xhrMock.teardown();
+      jest.clearAllMocks();
+    });
+    describe('error', () => {
+      it('handles request error', async () => {
+        jest.spyOn(console, 'error').mockImplementation(jest.fn);
+        const { getByText } = renderUploader();
+        await act(async () => {
+          xhrMock.post('/upload', {
+            status: 500,
+            reason: 'Error: Some error',
+          });
+          triggerChange();
         });
-        Object.defineProperty(filesInput, 'files', {
-          value: [new File(['content'], 'test.txt', { type: 'text/plain' })],
-        });
-        fireEvent.change(filesInput);
+        expect(getByText('Error: Some error')).toHaveClass(
+          'wavevision-uploader__file-error',
+        );
       });
-      expect(uploader.childElementCount).toBe(2);
+    });
+    describe('success', () => {
+      it('adds file to upload and handles upload', async () => {
+        const { baseElement } = renderUploader();
+        const uploader = getUploaderElement(baseElement);
+        await act(async () => {
+          xhrMock.post('/upload', {
+            status: 200,
+            body: JSON.stringify({
+              ...file,
+              urls: { download: '/download', preview: '/preview' },
+            }),
+          });
+          triggerChange();
+        });
+        expect(uploader.childElementCount).toBe(2);
+      });
     });
   });
   describe('delete', () => {

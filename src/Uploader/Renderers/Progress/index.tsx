@@ -5,7 +5,7 @@ import { className } from '../../utils';
 import { PROGRESS } from '../constants';
 import { ProgressDefaultRenderer, ProgressProps } from '../types';
 
-import './progress.scss';
+import './style.scss';
 
 const renderDefault = (props: ProgressProps): ReactElement => (
   <>{props.value} %</>
