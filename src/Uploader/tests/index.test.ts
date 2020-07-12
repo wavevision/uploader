@@ -1,10 +1,10 @@
-import Uploader from '..';
+import WavevisionUploader from '..';
 
 import { createInputs, createRoot } from './utils';
 
 describe('Uploader/index', () => {
   const root = createRoot();
-  const init = () => Uploader.init({ link: { url: '' }, root });
+  const init = () => WavevisionUploader.init({ link: { url: '' }, root });
   beforeEach(() => {
     root.innerHTML = '';
   });
