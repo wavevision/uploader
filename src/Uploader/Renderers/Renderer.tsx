@@ -10,11 +10,15 @@ type UsedRenderer<T> = RendererComponent<RendererProps<T>> | undefined;
 
 const render = <T extends object>(
   key: keyof Renderers,
-  element: ReactElement,
+  renderDefault: (props: T) => ReactElement,
   props: T,
 ): ReactElement => {
   const Renderer = useRenderer(key) as UsedRenderer<T>;
-  return Renderer ? <Renderer {...props} messages={useMessages()} /> : element;
+  return Renderer ? (
+    <Renderer {...props} messages={useMessages()} />
+  ) : (
+    renderDefault(props)
+  );
 };
 
 export default { render };

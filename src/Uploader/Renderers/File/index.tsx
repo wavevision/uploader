@@ -36,7 +36,7 @@ const renderDefault = (props: FileProps): ReactElement => (
 
 const File: FileDefaultRenderer = props => (
   <div className={className.element('file')}>
-    {Renderer.render(FILE, renderDefault(props), props)}
+    {Renderer.render(FILE, renderDefault, props)}
   </div>
 );
 

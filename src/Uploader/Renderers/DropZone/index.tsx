@@ -44,7 +44,7 @@ const DropZone: DropZoneDefaultRenderer = props => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      {Renderer.render(DROP_ZONE, renderDefault(props), props)}
+      {Renderer.render(DROP_ZONE, renderDefault, props)}
     </div>
   );
 };

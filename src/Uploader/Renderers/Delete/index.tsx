@@ -25,7 +25,7 @@ const renderDefault = (props: DeleteProps): ReactElement => {
 
 const Delete: DeleteDefaultRenderer = props => (
   <div className={className.element('delete')}>
-    {Renderer.render(DELETE, renderDefault(props), props)}
+    {Renderer.render(DELETE, renderDefault, props)}
   </div>
 );
 
