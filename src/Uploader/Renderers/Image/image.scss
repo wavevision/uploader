@@ -4,11 +4,15 @@
 $white: rgba(255, 255, 255, 1);
 $transparent: rgba(255, 255, 255, 0);
 
-.wavevision-uploader__image {
+.wavevision-uploader__image,
+.wavevision-uploader__image-preview {
   @include size($image-preview-size);
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.wavevision-uploader__image {
   position: relative;
 }
 
@@ -35,13 +39,9 @@ $transparent: rgba(255, 255, 255, 0);
   }
 }
 
-.wavevision-uploader__image-preview {
-  @include size($image-preview-size);
-
-  img {
-    display: block;
-    width: $image-preview-size;
-  }
+.wavevision-uploader__image-preview img {
+  display: block;
+  width: $image-preview-size;
 }
 
 .wavevision-uploader__no-image {
