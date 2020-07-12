@@ -78,6 +78,7 @@
   },
   "scripts": {
     "build": "run-s webpack-clean webpack ts-declaration ts-declaration-all",
+    "ci": "run-s ts eslint prettier stylelint test-all",
     "eslint": "eslint *.js *.ts src --cache --ext .js --ext .ts --ext .tsx",
     "eslint-clean": "rm -f .eslintcache",
     "eslint-fix": "yarn eslint --fix",
@@ -87,7 +88,7 @@
     "storybook": "start-storybook",
     "stylelint": "stylelint src/**/*.{css,scss}",
     "stylelint-fix": "yarn stylelint --fix",
-    "test": "yarn test:all -o",
+    "test": "yarn test-all -o",
     "test-all": "cross-env NODE_ENV=test jest",
     "test-all-clean": "run-s test-clean test-all",
     "test-clean": "rm -rf temp/cache/jest",
