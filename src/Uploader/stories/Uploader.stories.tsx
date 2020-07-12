@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import getElementById from '@wavevision/ts-utils/dom/getElementById';
-import random from '@wavevision/ts-utils/strings/random';
 import xhrMock, { delay } from 'xhr-mock';
 
 import Uploader from '../Uploader';
@@ -9,17 +8,19 @@ import { UPLOADER_TYPE_BASIC, UPLOADER_TYPE_IMAGES } from '../constants';
 import { JsonFile } from '../JsonManager/types';
 import { UploaderType } from '../types';
 
+let id = 1;
+
 const makeFile = (file: File): JsonFile => {
-  const id = random(6);
+  id++;
   return {
-    id,
+    id: String(id),
     originalName: file.name,
     contentType: file.type,
     size: file.size,
     uploadedAt: new Date().toISOString(),
     urls: {
       download: 'http://satyr.io/800x800',
-      preview: 'http://satyr.io/160x160',
+      preview: id % 2 === 0 ? 'http://satyr.io/160x160' : undefined,
     },
   };
 };

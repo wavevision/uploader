@@ -45,5 +45,5 @@ $transparent: rgba(255, 255, 255, 0);
 }
 
 .wavevision-uploader__no-image {
-  @include size(3 * $spacer);
+  @include size(5 * $spacer);
 }

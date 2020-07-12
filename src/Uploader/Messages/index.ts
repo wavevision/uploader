@@ -11,8 +11,8 @@ import {
 export const DEFAULT_MESSAGES: RequiredMessages = {
   [DELETE_FILE]: 'Delete',
   [DOWNLOAD_FILE]: 'Download',
-  [DROP_MULTIPLE_FILES]: 'Choose or drop files here.',
-  [DROP_SINGLE_FILE]: 'Choose or drop file here',
+  [DROP_MULTIPLE_FILES]: 'Choose or drop files here',
+  [DROP_SINGLE_FILE]: 'Choose or drop a file here',
 };
 
 const MessagesContext = createContext<RequiredMessages>(DEFAULT_MESSAGES);
