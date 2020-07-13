@@ -77,7 +77,6 @@ const config: Configuration = {
   output: {
     library: 'WavevisionUploader',
     libraryTarget: 'umd',
-    libraryExport: 'default',
     path: resolve(__dirname, '..', 'dist'),
   },
   resolve: {
@@ -93,26 +92,10 @@ export default [
       filename: 'index.js',
     },
     externals: {
-      '@wavevision/class-name': {
-        commonjs: '@wavevision/class-name',
-        commonjs2: '@wavevison/class-name',
-      },
-      '@wavevision/ts-utils': {
-        commonjs: '@wavevision/ts-utils',
-        commonjs2: '@wavevision/ts-utils',
-      },
-      'react-dom': {
-        commonjs: 'react-dom',
-        commonjs2: 'react-dom',
-        amd: 'ReactDOM',
-        root: 'ReactDOM',
-      },
-      react: {
-        commonjs: 'react',
-        commonjs2: 'react',
-        amd: 'React',
-        root: 'React',
-      },
+      '@wavevision/class-name': 'umd @wavevision/class-name',
+      '@wavevision/ts-utils': 'umd @wavevision/ts-utils',
+      'react-dom': 'umd react-dom',
+      react: 'umd react',
     },
     resolve: {
       alias: {
