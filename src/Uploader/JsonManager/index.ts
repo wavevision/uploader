@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import { JsonData, JsonManager } from './types';
+import { JsonData, JsonDataManager } from './types';
 import {
   assertJsonInput,
   encodeJsonInput,
@@ -9,12 +9,12 @@ import {
   parseJsonInput,
 } from './utils';
 
-const create = (jsonInput: HTMLInputElement): JsonManager => {
+const create = (jsonInput: HTMLInputElement): JsonDataManager => {
   assertJsonInput(jsonInput);
-  const getData: JsonManager['getData'] = () => parseJsonInput(jsonInput);
-  const getDefaultFiles: JsonManager['getDefaultFiles'] = () =>
+  const getData: JsonDataManager['getData'] = () => parseJsonInput(jsonInput);
+  const getDefaultFiles: JsonDataManager['getDefaultFiles'] = () =>
     getData().defaultFiles;
-  const getUploadedFiles: JsonManager['getUploadedFiles'] = () =>
+  const getUploadedFiles: JsonDataManager['getUploadedFiles'] = () =>
     getData().uploadedFiles;
   const setData = (data: JsonData): JsonData => {
     encodeJsonInput(jsonInput, data);
@@ -49,9 +49,13 @@ const create = (jsonInput: HTMLInputElement): JsonManager => {
   };
 };
 
-export const useJsonManager = (jsonInput: HTMLInputElement): JsonManager => {
+export const useJsonManager = (
+  jsonInput: HTMLInputElement,
+): JsonDataManager => {
   const { current } = useRef(create(jsonInput));
   return current;
 };
 
-export default { create };
+const JsonManager = { create };
+
+export default JsonManager;

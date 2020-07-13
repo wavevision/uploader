@@ -18,7 +18,7 @@ export interface JsonData {
   uploadedFiles: JsonFiles;
 }
 
-export interface JsonManager {
+export interface JsonDataManager {
   addUploadedFile: (file: JsonFile) => JsonData;
   deleteFile: (file: JsonFile) => JsonData;
   getData: () => JsonData;
