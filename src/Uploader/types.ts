@@ -13,6 +13,10 @@ interface UploaderBaseProps {
     url: string;
   };
   messages?: Messages;
+  onError?: (e: UploaderErrorEvent) => void;
+  onDelete?: (e: UploaderDeleteEvent) => void;
+  onUpload?: (e: UploaderUploadEvent) => FileList | File[] | undefined;
+  onUploaded?: (e: UploaderUploadedEvent) => void;
   renderers?: Renderers;
   type?: UploaderType;
 }
@@ -53,10 +57,6 @@ export interface UploaderProps extends UploaderBaseProps {
   filesInput: HTMLInputElement;
   form: HTMLFormElement | null;
   jsonInput: HTMLInputElement;
-  onError?: (e: UploaderErrorEvent) => void;
-  onDelete?: (e: UploaderDeleteEvent) => void;
-  onUpload?: (e: UploaderUploadEvent) => FileList | File[] | undefined;
-  onUploaded?: (e: UploaderUploadedEvent) => void;
 }
 
 export type UploaderDefaultProps = Pick<
