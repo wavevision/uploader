@@ -15,27 +15,32 @@ import './style.scss';
 const renderDefault = (props: DropZoneProps): ReactElement => {
   const [dragged, setDragged] = useState(false);
   const handleClick = (): void => props.filesInput.click();
-  const handleDragLeave = (): void => setDragged(false);
-  const handleDragOver = (e: DragEvent): void => {
-    setDragged(true);
+  const handleDrag = (e: DragEvent): void => {
     e.preventDefault();
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.dropEffect = 'move';
   };
+  const handleDragEnter = (e: DragEvent): void => {
+    handleDrag(e);
+    setDragged(true);
+  };
+  const handleDragLeave = (): void => setDragged(false);
   const handleDrop = (e: DragEvent): void => {
-    handleDragOver(e);
-    if (e.dataTransfer) {
-      handleDragLeave();
-      const { files } = e.dataTransfer;
-      props.filesInput.files = files;
-      props.filesInput.dispatchEvent(new Event('change', { bubbles: true }));
-    }
+    e.preventDefault();
+    const { files } = e.dataTransfer;
+    props.filesInput.files = files;
+    props.filesInput.dispatchEvent(new Event('change', { bubbles: true }));
+    handleDragLeave();
   };
   return (
     <div
       className={className.element('drop-zone', dragged ? 'dragged' : null)}
+      draggable={true}
       role="button"
       onClick={handleClick}
+      onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
-      onDragOver={handleDragOver}
+      onDragOver={handleDrag}
       onDrop={handleDrop}
     >
       {useMessage(
