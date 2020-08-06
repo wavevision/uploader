@@ -1,1 +1,7 @@
+title: Wavevision Uploader
+email: info@wavevision.com
+description: Simple back-end agnostic client-side uploader component 📤
+url: "https://wavevision.github.io/uploader"
+github_username: wavevision
+markdown: kramdown
 theme: jekyll-theme-cayman

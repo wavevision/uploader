@@ -5,4 +5,16 @@
 
 Simple back-end agnostic client-side uploader component with customizable renderers as React components.
 
-**🚧 Work In Progress 🚧**
+## Installation
+
+Via [Yarn](https://yarnpkg.com)
+
+```bash
+yarn add @wavevision/uploader
+```
+
+or [npm](https://npmjs.com)
+
+```bash
+npm install --save @wavevision/uploader
+```
