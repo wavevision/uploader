@@ -8,7 +8,7 @@ import { ProgressDefaultRenderer, ProgressProps } from '../types';
 import './style.scss';
 
 const renderDefault = (props: ProgressProps): ReactElement => (
-  <div className={className.element('progress')}>{props.value} % </div>
+  <div className={className.element('progress')}>{props.value} %</div>
 );
 
 const Progress: ProgressDefaultRenderer = Renderer.render(

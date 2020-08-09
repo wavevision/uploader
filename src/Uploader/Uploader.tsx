@@ -1,4 +1,10 @@
-import React, { memo, useEffect, useState, ReactNode } from 'react';
+import React, {
+  memo,
+  useEffect,
+  useState,
+  ReactNode,
+  ReactElement,
+} from 'react';
 
 import DropZone from './Renderers/DropZone';
 import Messages, { createMessages } from './Messages';
@@ -74,6 +80,18 @@ const UploaderComponent: UploaderFunctionComponent<
     props.filesInput.addEventListener('change', handleChange);
     return onUnmount;
   };
+  const renderFile = (file: UploaderFile): ReactElement => (
+    <UploaderItem
+      key={file.id}
+      file={file}
+      link={props.link}
+      onDelete={handleDelete}
+      onError={handleError}
+      onUpload={handleUpload}
+      onUploaded={handleUploaded}
+      uploaderType={props.type}
+    />
+  );
   useEffect(onMount, []);
   return (
     <Messages.Provider value={createMessages(props.messages)}>
@@ -81,18 +99,7 @@ const UploaderComponent: UploaderFunctionComponent<
         <div
           className={className.block(props.type, files.length ? null : 'empty')}
         >
-          {files.map(file => (
-            <UploaderItem
-              key={file.id}
-              file={file}
-              link={props.link}
-              onDelete={handleDelete}
-              onError={handleError}
-              onUpload={handleUpload}
-              onUploaded={handleUploaded}
-              uploaderType={props.type}
-            />
-          ))}
+          {files.map(renderFile)}
           {renderDropZone(files, props)}
         </div>
       </Renderers.Provider>
