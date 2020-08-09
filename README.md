@@ -18,3 +18,7 @@ or [npm](https://npmjs.com)
 ```bash
 npm install --save @wavevision/uploader
 ```
+
+## Documentation
+
+You can read the docs at [wavevision.github.io/uploader](https://wavevision.github.io/uploader).
