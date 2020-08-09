@@ -1,7 +1,3 @@
----
-title: Wavevision Uploader
----
-
 # Docs
 
 <hr>
