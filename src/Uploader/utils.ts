@@ -34,7 +34,7 @@ export const getInput = (
   );
   if (!input) {
     input = document.createElement('input');
-    input.multiple = true;
+    input.multiple = type === 'file';
     input.type = type;
     container.appendChild(input);
   }
