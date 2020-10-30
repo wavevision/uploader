@@ -8,7 +8,7 @@ import { useRenderer } from '.';
 
 type UsedRenderer<T> = RendererComponent<RendererProps<T>> | undefined;
 
-const render = <T extends object>(
+const render = <T extends Record<string, unknown>>(
   key: keyof Renderers,
   renderDefault: (props: T) => ReactElement,
 ) => (props: T): ReactElement => {

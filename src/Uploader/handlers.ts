@@ -1,6 +1,7 @@
 import { UploaderFile, UploaderProps } from './types';
 import { JsonFile } from './JsonManager/types';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 const assert = (callback: unknown): callback is Function =>
   typeof callback === 'function';
 
