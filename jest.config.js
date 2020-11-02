@@ -32,7 +32,7 @@ module.exports = {
     'ts-jest': {
       babelConfig,
       isolatedModules: true,
-      tsConfig: tsConfig.compilerOptions,
+      tsconfig: tsConfig.compilerOptions,
     },
   },
 };
