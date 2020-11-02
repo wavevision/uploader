@@ -16,7 +16,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@wavevision/class-name": "^0.4.7",
+    "@wavevision/class-name": "^1.0.0",
     "@wavevision/ts-utils": "^1.0.0"
   },
   "devDependencies": {
