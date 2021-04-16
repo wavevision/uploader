@@ -30,5 +30,5 @@ export const createForm = (): HTMLFormElement => {
   return form;
 };
 
-export const getUploaderElement = (baseElement: HTMLElement): HTMLDivElement =>
+export const getUploaderElement = (baseElement: Element): HTMLDivElement =>
   baseElement.firstElementChild as HTMLDivElement;

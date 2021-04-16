@@ -3,6 +3,7 @@
   "include": [
     "./*.js",
     "./*.ts",
+    "./.eslintrc.js",
     "./.storybook/**/*",
     "./src/**/*",
     "./webpack/**/*"

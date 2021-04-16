@@ -1,5 +1,9 @@
 module.exports = {
-  extends: require.resolve('@wavevision/coding-standard/ts/eslint/react'),
+  extends: [
+    '@wavevision/coding-standard/ts/eslint',
+    '@wavevision/coding-standard/ts/eslint/react',
+    '@wavevision/coding-standard/ts/eslint/jest',
+  ].map(require.resolve),
   parserOptions: {
     project: 'tsconfig.json',
     tsconfigRootDir: '.',
