@@ -4,7 +4,6 @@ import { JsonFile } from '../../JsonManager/types';
 import { UploaderItemProps } from '../types';
 
 import { createData, createRequest, eventRequest } from './utils';
-import { DEFAULT_LINK_PARAMETER } from './constants';
 import { HandlerProps } from './types';
 
 type Props = HandlerProps & UploaderItemProps;
@@ -48,9 +47,7 @@ const Handler = (props: Props): ReactElement => {
       });
       setXhr(xhr);
       props.onUpload();
-      xhr.send(
-        createData(source, props.link.parameter || DEFAULT_LINK_PARAMETER),
-      );
+      xhr.send(createData(source, props));
       setUploading(true);
     }
   };

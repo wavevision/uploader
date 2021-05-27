@@ -33,6 +33,7 @@ import {
 } from './types';
 import { UPLOADER_TYPE_BASIC } from './constants';
 import './styles';
+import { UploaderItemProps } from './UploaderItem/types';
 
 const renderDropZone = (
   files: UploaderState,
@@ -80,10 +81,14 @@ const UploaderComponent: UploaderFunctionComponent<
     props.filesInput.addEventListener('change', handleChange);
     return onUnmount;
   };
-  const renderFile = (file: UploaderFile): ReactElement => (
+  const renderFile = (
+    file: UploaderFile,
+    index: UploaderItemProps['index'],
+  ): ReactElement => (
     <UploaderItem
       key={file.id}
       file={file}
+      index={index}
       link={props.link}
       onDelete={handleDelete}
       onError={handleError}

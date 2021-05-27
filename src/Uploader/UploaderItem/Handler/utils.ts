@@ -1,6 +1,11 @@
-export const createData = (file: File, parameter: string): FormData => {
+import { UploaderItemProps } from '../types';
+
+import { DEFAULT_LINK_PARAMETER, INDEX } from './constants';
+
+export const createData = (file: File, props: UploaderItemProps): FormData => {
   const data = new FormData();
-  data.append(parameter, file);
+  data.append(props.link.parameter || DEFAULT_LINK_PARAMETER, file);
+  data.append(INDEX, String(props.index));
   return data;
 };
 
